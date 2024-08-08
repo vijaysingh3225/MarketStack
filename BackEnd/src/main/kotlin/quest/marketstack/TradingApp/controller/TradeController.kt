@@ -1,20 +1,15 @@
 package quest.marketstack.TradingApp.controller
 
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import quest.marketstack.TradingApp.model.TradeExec
 
 import quest.marketstack.TradingApp.service.TradeServiceInterface
 
 @RestController
 @RequestMapping("/api/tradeExecs")
-class TradeController(private val service: TradeServiceInterface) {
+@CrossOrigin(origins = ["http://localhost:3000","http://192.168.86.244:3000"])
+    class TradeController(private val service: TradeServiceInterface) {
     @GetMapping
     fun getTradeExecs(): Collection<TradeExec> = service.getTradeExecs();
 
