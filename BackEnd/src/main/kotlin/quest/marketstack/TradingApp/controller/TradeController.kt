@@ -18,5 +18,5 @@ import quest.marketstack.TradingApp.service.TradeServiceInterface
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun addTradeExec(@RequestBody exec: TradeExec): TradeExec = service.addTradeExec(exec)
+    fun addTradeExec(@RequestBody execList: MutableList<TradeExec>): List<TradeExec>  = service.addTradeExecs(execList)
 }

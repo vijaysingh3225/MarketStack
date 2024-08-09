@@ -14,5 +14,5 @@ class MongoTradeService(private val dataSource: MongoTradeDataSource): TradeServ
 
     override fun getTradeExec(id: String): TradeExec? = dataSource.retrieveTradeExec(id)
 
-    override fun addTradeExec(exec: TradeExec): TradeExec = dataSource.createTradeExec(exec)
+    override fun addTradeExecs(execList: MutableList<TradeExec>):List<TradeExec> = dataSource.createTradeExecs(execList)
 }

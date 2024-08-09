@@ -9,7 +9,7 @@ interface TradeDataSource{
 
     fun retrieveTradeExecs(): Collection<TradeExec>
     fun retrieveTradeExec(id: String): TradeExec?
-    fun createTradeExec(exec: TradeExec): TradeExec
+    fun createTradeExecs(execList: List<TradeExec>): List<TradeExec>
 
 
 }

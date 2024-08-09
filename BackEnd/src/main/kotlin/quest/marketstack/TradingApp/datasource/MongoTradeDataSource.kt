@@ -21,7 +21,7 @@ class MongoTradeDataSource @Autowired constructor(
         return tradeExecRepository.findById(id).orElse(null)
     }
 
-    override fun createTradeExec(exec: TradeExec): TradeExec {
-        return tradeExecRepository.save(exec)
+    override fun createTradeExecs(execList: List<TradeExec>): List<TradeExec> {
+        return tradeExecRepository.saveAll(execList)
     }
 }

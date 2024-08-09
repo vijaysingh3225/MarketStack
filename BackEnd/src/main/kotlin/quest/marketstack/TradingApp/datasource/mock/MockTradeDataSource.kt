@@ -16,7 +16,7 @@ class MockTradeDataSource:TradeDataSource {
     val mockExec = mutableListOf(TradeExec(
         id = "234",
         account = "2313",
-        tradeDate = LocalDate.of(2021, 9, 13),
+        tradeDate = LocalDate.of(2022, 7, 15),
         settlementDate = LocalDate.of(2021, 9, 15),
         currency = "USD",
         type = 3, // Example type
@@ -24,7 +24,7 @@ class MockTradeDataSource:TradeDataSource {
         symbol = "UROY",
         quantity = 200,
         price = 4.3038,
-        execTime = LocalTime.of(10, 28, 12),
+        execTime = LocalTime.of(14, 45, 30),
         commission = 0.0,
         secFee = 0.01,
         taf = 0.02,
@@ -46,8 +46,8 @@ class MockTradeDataSource:TradeDataSource {
 
         }
 
-    override fun createTradeExec(exec: TradeExec): TradeExec {
-        mockExec.add(exec)
-        return exec
+    override fun createTradeExecs(execList: List<TradeExec>): List<TradeExec>{
+        mockExec.addAll(execList)
+        return execList
     }
 }
