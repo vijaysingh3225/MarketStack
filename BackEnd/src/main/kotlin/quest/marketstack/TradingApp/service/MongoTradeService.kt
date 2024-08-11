@@ -13,5 +13,25 @@ class MongoTradeService(private val dataSource: MongoExecutionDataSource): Trade
 
     override fun getTradeExec(id: String): TradeExec? = dataSource.retrieveTradeExec(id)
 
-    override fun addTradeExecs(execList: MutableList<TradeExec>):List<TradeExec> = dataSource.createTradeExecs(execList)
+    override fun addTradeExecs(execList: MutableList<TradeExec>): List<TradeExec> {
+        val tradesInDB = dataSource.retrieveTradeExecs()
+        val refinedExecs: MutableList<TradeExec> = mutableListOf()
+        var isDup = false;
+        var dupCount = 0;
+
+        for (i in execList){
+            for (j in tradesInDB){
+                if (isDuplicate(i,j))
+                    isDup = true
+
+            }
+            if (!isDup)
+                refinedExecs.add(i)
+            else
+                dupCount++
+        }
+        dataSource.createTradeExecs(refinedExecs)
+        print("$dupCount duplicates were found")
+        return refinedExecs
+    }
 }

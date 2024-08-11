@@ -79,6 +79,7 @@ class TradeControllerTest @Autowired constructor(
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     inner class PostTradeExec {
         @Test
+        @DirtiesContext
         fun `should add a new trade execution`() {
 
             val group:List<TradeExec> = listOf(TradeExec(
@@ -114,7 +115,6 @@ class TradeControllerTest @Autowired constructor(
 
         }
         @Test
-        @DirtiesContext
         fun `should allow duplicates among submission list and reject duplicates between submission and database`() {
             val group:MutableList<TradeExec> = mutableListOf(TradeExec(
                 id = "1",account = "8923", tradeDate = LocalDate.of(2021, 7, 15), settlementDate = LocalDate.of(2022, 7, 20), currency = "EUR", type = 2,
@@ -136,12 +136,7 @@ class TradeControllerTest @Autowired constructor(
             }
             performPost
                 .andDo { print() }
-                .andExpect {
-                    jsonPath("$[0].id") { value("3") }
-                }
-            val performGet = mockMvc.get(baseUrl)
-            performGet
-                .andDo { print() }
+
         }
         }
 

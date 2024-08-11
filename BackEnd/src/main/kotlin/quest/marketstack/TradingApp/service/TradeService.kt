@@ -14,18 +14,23 @@ class TradeService(private val dataSource: ExecutionDataSource):TradeServiceInte
 
     override fun addTradeExecs(execList: MutableList<TradeExec>): List<TradeExec> {
         val tradesInDB = dataSource.retrieveTradeExecs()
-        val itemsToRemove = mutableListOf<TradeExec>()
-            for (i in tradesInDB){
-                for (j in execList){
-                    if (isDuplicate(i,j)){
-                        itemsToRemove.add(j)
-                    }
-                }
+        val refinedExecs: MutableList<TradeExec> = mutableListOf()
+        var isDup = false;
+        var dupCount = 0;
+
+        for (i in execList){
+            for (j in tradesInDB){
+                if (isDuplicate(i,j))
+                    isDup = true
+
             }
-        execList.removeAll(itemsToRemove)
-        dataSource.createTradeExecs(execList)
-        val length = itemsToRemove.size
-        print("$length duplicate executions were found")
-        return itemsToRemove
+            if (!isDup)
+                refinedExecs.add(i)
+            else
+                dupCount++
+        }
+        dataSource.createTradeExecs(refinedExecs)
+        print("$dupCount duplicates were found")
+        return refinedExecs
     }
 }
