@@ -7,7 +7,7 @@ import java.time.LocalTime
 @Document(collection = "TradeExecutions")
 data class TradeExec(
         @Id
-        val id: String?,
+        val id: String?=null,
         val account: String,
         val tradeDate: LocalDate,
         val settlementDate: LocalDate,

@@ -1,14 +1,11 @@
 package quest.marketstack.TradingApp.service
 
-import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import quest.marketstack.TradingApp.datasource.TradeDataSource
+import quest.marketstack.TradingApp.datasource.TradeExec.ExecutionDataSource
 
-private val dataSource: TradeDataSource = mockk(relaxed = true)
+private val dataSource: ExecutionDataSource = mockk(relaxed = true)
 
 private val tradeService = TradeService(dataSource)
 

@@ -1,17 +1,15 @@
 package quest.marketstack.TradingApp.datasource.mock
 
-import org.springframework.context.annotation.Primary
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
-import org.springframework.stereotype.Repository
-import quest.marketstack.TradingApp.datasource.TradeDataSource
+import quest.marketstack.TradingApp.datasource.TradeExec.ExecutionDataSource
 import quest.marketstack.TradingApp.model.TradeExec
 import java.time.LocalDate
 import java.time.LocalTime
 
 @Component
 @Profile("test")
-class MockTradeDataSource:TradeDataSource {
+class MockExecutionDataSource: ExecutionDataSource {
 
     val mockExec = mutableListOf(TradeExec(
         id = "234",

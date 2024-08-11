@@ -2,12 +2,12 @@ package quest.marketstack.TradingApp.service
 
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
-import quest.marketstack.TradingApp.datasource.TradeDataSource
+import quest.marketstack.TradingApp.datasource.TradeExec.ExecutionDataSource
 import quest.marketstack.TradingApp.model.TradeExec
 
 @Service
 @Profile("test")
-class TradeService(private val dataSource: TradeDataSource):TradeServiceInterface {
+class TradeService(private val dataSource: ExecutionDataSource):TradeServiceInterface {
     override fun getTradeExecs(): Collection<TradeExec> = dataSource.retrieveTradeExecs()
 
     override fun getTradeExec(id: String): TradeExec? = dataSource.retrieveTradeExec(id)
@@ -23,8 +23,9 @@ class TradeService(private val dataSource: TradeDataSource):TradeServiceInterfac
                 }
             }
         execList.removeAll(itemsToRemove)
+        dataSource.createTradeExecs(execList)
         val length = itemsToRemove.size
         print("$length duplicate executions were found")
-        return execList
+        return itemsToRemove
     }
 }

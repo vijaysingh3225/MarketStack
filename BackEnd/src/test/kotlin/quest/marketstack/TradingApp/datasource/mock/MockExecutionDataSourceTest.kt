@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 
-internal class MockTradeDataSourceTest {
+internal class MockExecutionDataSourceTest {
 
-    private val mockDataSource = MockTradeDataSource();
+    private val mockDataSource = MockExecutionDataSource();
 
     @Test
     fun `should provide a collection of trade executions`() {

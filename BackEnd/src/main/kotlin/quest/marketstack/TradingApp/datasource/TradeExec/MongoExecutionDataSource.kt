@@ -1,17 +1,16 @@
-package quest.marketstack.TradingApp.datasource
+package quest.marketstack.TradingApp.datasource.TradeExec
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Primary
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
-import quest.marketstack.TradingApp.datasource.TradeDataSource
 import quest.marketstack.TradingApp.model.TradeExec
 
 @Primary
 @Profile("!test")
 @Component
-class MongoTradeDataSource @Autowired constructor(
+class MongoExecutionDataSource @Autowired constructor(
     private val tradeExecRepository: TradeExecRepository
-) : TradeDataSource {
+) : ExecutionDataSource {
 
     override fun retrieveTradeExecs(): Collection<TradeExec> {
         return tradeExecRepository.findAll()
