@@ -6,7 +6,7 @@ import quest.marketstack.TradingApp.datasource.ClosedTrades.ClosedTradeDataSourc
 import quest.marketstack.TradingApp.model.ClosedTrade
 
 @Service
-@Profile("Test")
+@Profile("!Test")
 class MongoClosedTradeService(private val dataSource: ClosedTradeDataSource):ClosedTradeServiceInterface {
     override fun getTrades(): Collection<ClosedTrade> = dataSource.retrieveTrades()
 

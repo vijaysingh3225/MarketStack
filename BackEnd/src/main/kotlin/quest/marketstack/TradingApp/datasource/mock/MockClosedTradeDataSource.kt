@@ -1,5 +1,7 @@
 package quest.marketstack.TradingApp.datasource.mock
 
+import org.springframework.context.annotation.Profile
+import org.springframework.stereotype.Component
 import quest.marketstack.TradingApp.datasource.ClosedTrades.ClosedTradeDataSource
 import quest.marketstack.TradingApp.model.ClosedTrade
 import quest.marketstack.TradingApp.model.OpenTrade
@@ -7,6 +9,8 @@ import quest.marketstack.TradingApp.model.TradeExec
 import java.time.LocalDate
 import java.time.LocalTime
 
+@Component
+@Profile("test")
 class MockClosedTradeDataSource : ClosedTradeDataSource {
     val mockExec = mutableListOf(
         TradeExec(
