@@ -1,4 +1,4 @@
-package quest.marketstack.TradingApp.datasource.TradeExec
+package quest.marketstack.TradingApp.datasource.OpenTrades
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Primary
 import org.springframework.context.annotation.Profile
@@ -9,32 +9,29 @@ import quest.marketstack.TradingApp.model.TradeExec
 @Primary
 @Profile("!test")
 @Component
-class MongoExecDataSource @Autowired constructor(
-    private val mongoTradeExecRepository: MongoTradeExecRepository) : TradeExecDataSource {
+class MongoOpenTradeDataSource @Autowired constructor(
+    private val mongoOpenTradeRepository: MongoOpenTradeRepository) : OpenTradeDataSource {
 
     override fun retrieveTrades(): Collection<Trade> {
-        return mongoTradeExecRepository.findAll()
+        return mongoOpenTradeRepository.findAll()
     }
 
     override fun retrieveTrade(id: String): Trade? {
-        return mongoTradeExecRepository.findById(id).orElse(null)
+        return mongoOpenTradeRepository.findById(id).orElse(null)
     }
 
     override fun createTrades(execList: Collection<Trade>): Collection<Trade> {
-        return mongoTradeExecRepository.saveAll(execList)
+        return mongoOpenTradeRepository.saveAll(execList)
     }
-    override fun addExec(exec: TradeExec, id: String): Trade {
-        // Fetch the Trade object by its ID
-        val trade = mongoTradeExecRepository.findById(id).orElseThrow {
+    override fun addExec(exec: TradeExec, id: String): Trade? {
+        val trade = mongoOpenTradeRepository.findById(id).orElseThrow {
             RuntimeException("Trade not found with ID: $id")
         }
 
-        // Add the new TradeExec to the tradeExecs collection
         val updatedTradeExecs = trade.tradeExecs.toMutableList()
         updatedTradeExecs.add(exec)
         trade.tradeExecs = updatedTradeExecs
 
-        // Save the updated Trade object
-        return mongoTradeExecRepository.save(trade)
+        return mongoOpenTradeRepository.save(trade)
     }
 }

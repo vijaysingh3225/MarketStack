@@ -1,14 +1,14 @@
-package quest.marketstack.TradingApp.TradeExec.mock
+package quest.marketstack.TradingApp.OpenTrades.mock
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import quest.marketstack.TradingApp.datasource.mock.MockTradeExecDataSource
+import quest.marketstack.TradingApp.datasource.mock.MockOpenTradeDataSource
 
 
-internal class MockTestTradeExecDataSource {
+internal class MockTestOpenTradeDataSource {
 
-    private val mockDataSource = MockTradeExecDataSource();
+    private val mockDataSource = MockOpenTradeDataSource();
 
     @Test
     fun `should provide a collection of trade executions`() {
@@ -22,6 +22,5 @@ internal class MockTestTradeExecDataSource {
         val tradeExecs = mockDataSource.retrieveTrades()
 
         assertNotNull(tradeExecs)
-
     }
 }

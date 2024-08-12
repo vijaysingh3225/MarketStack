@@ -77,6 +77,25 @@ data class Trade(
     fun addExec(newExec: TradeExec){
         tradeExecs.add(newExec)
     }
+    fun currentSize(){
+        var size = 0
+        if (shortLong){
+            for (i in tradeExecs){
+                if (i.side=="B")
+                    size+=i.quantity
+                else
+                    size-=i.quantity
+            }
+        }
+        else{
+            for (i in tradeExecs){
+                if (i.side=="SS")
+                    size-=i.quantity
+                else
+                    size+=i.quantity
+            }
+        }
+    }
 
 }
 

@@ -1,4 +1,4 @@
-package quest.marketstack.TradingApp.TradeExec
+package quest.marketstack.TradingApp.OpenTrades
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
