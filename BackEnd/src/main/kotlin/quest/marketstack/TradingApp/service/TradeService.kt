@@ -2,35 +2,36 @@ package quest.marketstack.TradingApp.service
 
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
-import quest.marketstack.TradingApp.datasource.TradeExec.ExecutionDataSource
+import quest.marketstack.TradingApp.datasource.TradeExec.TradeExecDataSource
+import quest.marketstack.TradingApp.model.Trade
 import quest.marketstack.TradingApp.model.TradeExec
 
 @Service
 @Profile("test")
-class TradeService(private val dataSource: ExecutionDataSource):TradeServiceInterface {
-    override fun getTradeExecs(): Collection<TradeExec> = dataSource.retrieveTradeExecs()
+class TradeService(private val dataSource: TradeExecDataSource):TradeServiceInterface {
+    override fun getTrades(): Collection<Trade> = dataSource.retrieveTrades()
 
-    override fun getTradeExec(id: String): TradeExec? = dataSource.retrieveTradeExec(id)
+    override fun getTrade(id: String): Trade? = dataSource.retrieveTrade(id)
 
-    override fun addTradeExecs(execList: MutableList<TradeExec>): List<TradeExec> {
-        val tradesInDB = dataSource.retrieveTradeExecs()
-        val refinedExecs: MutableList<TradeExec> = mutableListOf()
-        var isDup = false;
-        var dupCount = 0;
-
-        for (i in execList){
-            for (j in tradesInDB){
-                if (isDuplicate(i,j))
-                    isDup = true
-
+    override fun addTradeExecs(execList: Collection<TradeExec>): Collection<TradeExec> {
+        val openTrades = dataSource.retrieveTrades()
+        var isMatch = false
+        for (i in execList) {
+            for (j in openTrades) {
+                val tradeId = j.id
+                if (i.symbol == j.tradeExecs.first().symbol && tradeId != null) {
+                    dataSource.addExec(i, tradeId)
+                    isMatch = true
+                }
             }
-            if (!isDup)
-                refinedExecs.add(i)
-            else
-                dupCount++
+            if (!isMatch){
+                if (i.side=="B")
+                    dataSource.createTrades(listOf(Trade(tradeExecs = mutableListOf(i), shortLong = true)))
+                else
+                    dataSource.createTrades(listOf(Trade(tradeExecs = mutableListOf(i), shortLong = false)))
+            }
+
         }
-        dataSource.createTradeExecs(refinedExecs)
-        print("$dupCount duplicates were found")
-        return refinedExecs
+        return execList
     }
 }

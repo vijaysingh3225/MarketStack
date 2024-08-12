@@ -2,16 +2,17 @@ package quest.marketstack.TradingApp.datasource.mock
 
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
-import quest.marketstack.TradingApp.datasource.TradeExec.ExecutionDataSource
+import quest.marketstack.TradingApp.datasource.TradeExec.TradeExecDataSource
+import quest.marketstack.TradingApp.model.Trade
 import quest.marketstack.TradingApp.model.TradeExec
 import java.time.LocalDate
 import java.time.LocalTime
 
 @Component
 @Profile("test")
-class MockExecutionDataSource: ExecutionDataSource {
+class MockTradeExecDataSource: TradeExecDataSource {
 
-    val mockExec = mutableListOf(TradeExec(
+    final val mockExec = mutableListOf(TradeExec(
         id = "234",
         account = "2313",
         tradeDate = LocalDate.of(2022, 7, 15),
@@ -35,17 +36,21 @@ class MockExecutionDataSource: ExecutionDataSource {
         clearingBroker = "MNGD",
         liquidity = "", // Empty string for liquidity
         note = ""))
+    val mockTrade = mutableListOf(Trade(id="123", tradeExecs = mockExec, shortLong = false))
 
-    override fun retrieveTradeExecs(): Collection<TradeExec>{
-        return mockExec
+    override fun retrieveTrades(): Collection<Trade>{
+        return mockTrade
     }
-    override fun retrieveTradeExec(id: String): TradeExec? {
-        return mockExec.firstOrNull() { it.id == id }
+    override fun retrieveTrade(id: String): Trade? {
+        return mockTrade.firstOrNull() { it.id == id }
 
         }
-
-    override fun createTradeExecs(execList: List<TradeExec>): List<TradeExec>{
-        mockExec.addAll(execList)
+    override fun createTrades(execList: Collection<Trade>): Collection<Trade>{
+        mockTrade.addAll(execList)
         return execList
+    }
+
+    override fun addExec(exec: TradeExec, id: String): Trade {
+        TODO("Not yet implemented")
     }
 }

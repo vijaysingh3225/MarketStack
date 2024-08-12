@@ -1,4 +1,4 @@
-package quest.marketstack.TradingApp.controller
+package quest.marketstack.TradingApp.TradeExec.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.DisplayName
@@ -41,7 +41,6 @@ class TradeControllerTest @Autowired constructor(
                 .andExpect {
                     status { isOk() }
                     content { contentType(MediaType.APPLICATION_JSON) }
-                    jsonPath("$[0].account") { value("2313") }
                 }
         }
     }
@@ -54,7 +53,7 @@ class TradeControllerTest @Autowired constructor(
 
         @Test
         fun `should return Not Found if the id does not exist`() {
-            val id = "323"
+            val id = "232"
 
             mockMvc.get("$baseUrl/$id")
                 .andDo { print() }
@@ -63,7 +62,7 @@ class TradeControllerTest @Autowired constructor(
 
         @Test
         fun `should return the trade with the given id`() {
-            val id = "234";
+            val id = "123";
 
             mockMvc.get("$baseUrl/$id")
                 .andDo { print() }
@@ -98,46 +97,8 @@ class TradeControllerTest @Autowired constructor(
                     status { isCreated() }
                 }
         }
-        @Test
-        fun `should reject duplicate execution`() {
-            val group:MutableList<TradeExec> = mutableListOf(TradeExec(
-                id = "4567",account = "8923", tradeDate = LocalDate.of(2022, 7, 15), settlementDate = LocalDate.of(2022, 7, 20), currency = "EUR", type = 2,
-                side = "Buy", symbol = "GOOGL", quantity = 150, price = 2728.95, execTime = LocalTime.of(14, 45, 30), commission = 5.75,
-                secFee = 0.02, taf = 0.03, nscc = 0.01, nasdaq = 0.02, ecnRemove = 0.01, ecnAdd = 0.02, grossProceeds = 409342.50, netProceeds = 409326.18, clearingBroker = "BKR1",
-                liquidity = "High", note = "Executed trade with adjusted settings"))
 
-            val performPost = mockMvc.post(baseUrl) {
-                contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(group)
-            }
-            performPost
-                .andDo { print() }
 
-        }
-        @Test
-        fun `should allow duplicates among submission list and reject duplicates between submission and database`() {
-            val group:MutableList<TradeExec> = mutableListOf(TradeExec(
-                id = "1",account = "8923", tradeDate = LocalDate.of(2021, 7, 15), settlementDate = LocalDate.of(2022, 7, 20), currency = "EUR", type = 2,
-                side = "Buy", symbol = "GOOGL", quantity = 150, price = 2728.95, execTime = LocalTime.of(14, 45, 30), commission = 5.75,
-                secFee = 0.02, taf = 0.03, nscc = 0.01, nasdaq = 0.02, ecnRemove = 0.01, ecnAdd = 0.02, grossProceeds = 409342.50, netProceeds = 409326.18, clearingBroker = "BKR1",
-                liquidity = "High", note = "Executed trade with adjusted settings"),TradeExec(
-                id = "2",account = "8923", tradeDate = LocalDate.of(2021, 7, 15), settlementDate = LocalDate.of(2022, 7, 20), currency = "EUR", type = 2,
-                side = "Buy", symbol = "GOOGL", quantity = 150, price = 2728.95, execTime = LocalTime.of(14, 45, 30), commission = 5.75,
-                secFee = 0.02, taf = 0.03, nscc = 0.01, nasdaq = 0.02, ecnRemove = 0.01, ecnAdd = 0.02, grossProceeds = 409342.50, netProceeds = 409326.18, clearingBroker = "BKR1",
-                liquidity = "High", note = "Executed trade with adjusted settings"),TradeExec(
-                id = "3",account = "8923", tradeDate = LocalDate.of(2022, 7, 15), settlementDate = LocalDate.of(2022, 7, 20), currency = "EUR", type = 2,
-                side = "Buy", symbol = "GOOGL", quantity = 150, price = 2728.95, execTime = LocalTime.of(14, 45, 30), commission = 5.75,
-                secFee = 0.02, taf = 0.03, nscc = 0.01, nasdaq = 0.02, ecnRemove = 0.01, ecnAdd = 0.02, grossProceeds = 409342.50, netProceeds = 409326.18, clearingBroker = "BKR1",
-                liquidity = "High", note = "Executed trade with adjusted settings"))
-
-            val performPost = mockMvc.post(baseUrl) {
-                contentType = MediaType.APPLICATION_JSON
-                content = objectMapper.writeValueAsString(group)
-            }
-            performPost
-                .andDo { print() }
-
-        }
         }
 
 }

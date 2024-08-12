@@ -1,9 +1,10 @@
-package quest.marketstack.TradingApp.datasource.OpenTrades
+package quest.marketstack.TradingApp.datasource.TradeExec
 
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 import quest.marketstack.TradingApp.model.Trade
 
 @Repository
-interface OpenTradeRepository: MongoRepository<Trade, String> {
+interface MongoTradeExecRepository : MongoRepository<Trade, String> {
+
 }
