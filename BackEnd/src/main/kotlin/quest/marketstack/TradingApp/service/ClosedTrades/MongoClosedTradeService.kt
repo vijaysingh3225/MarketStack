@@ -2,13 +2,13 @@ package quest.marketstack.TradingApp.service.ClosedTrades
 
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
-import quest.marketstack.TradingApp.datasource.mock.MockClosedTradeDataSource
-import quest.marketstack.TradingApp.model.OpenTrade
+import quest.marketstack.TradingApp.datasource.ClosedTrades.ClosedTradeDataSource
+import quest.marketstack.TradingApp.model.ClosedTrade
 
 @Service
 @Profile("Test")
-class MongoClosedTradeService(private val dataSource: MockClosedTradeDataSource):ClosedTradeServiceInterface {
-    override fun getTrades(): Collection<OpenTrade> = dataSource.retrieveTrades()
+class MongoClosedTradeService(private val dataSource: ClosedTradeDataSource):ClosedTradeServiceInterface {
+    override fun getTrades(): Collection<ClosedTrade> = dataSource.retrieveTrades()
 
-    override fun getTrade(id: String): OpenTrade? = dataSource.retrieveTrade(id)
+    override fun getTrade(id: String): ClosedTrade? = dataSource.retrieveTrade(id)
 }
