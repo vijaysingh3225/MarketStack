@@ -1,8 +1,8 @@
 package quest.marketstack.TradingApp.service.ClosedTrades
 
-import quest.marketstack.TradingApp.model.Trade
+import quest.marketstack.TradingApp.model.OpenTrade
 
 interface ClosedTradeServiceInterface {
-    fun getTrades(): Collection<Trade>
-    fun getTrade(id: String): Trade?
+    fun getTrades(): Collection<OpenTrade>
+    fun getTrade(id: String): OpenTrade?
 }

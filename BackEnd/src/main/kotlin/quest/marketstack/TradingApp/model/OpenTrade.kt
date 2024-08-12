@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document(collection = "Trade-Open")
-data class Trade(
+data class OpenTrade(
             @Id
             val id: String? = null,
             var tradeExecs: MutableCollection<TradeExec> = mutableListOf(),
@@ -77,7 +77,7 @@ data class Trade(
     fun addExec(newExec: TradeExec){
         tradeExecs.add(newExec)
     }
-    fun currentSize(){
+    fun currentSize():Int{
         var size = 0
         if (shortLong){
             for (i in tradeExecs){
@@ -95,6 +95,7 @@ data class Trade(
                     size+=i.quantity
             }
         }
+        return size
     }
 
 }

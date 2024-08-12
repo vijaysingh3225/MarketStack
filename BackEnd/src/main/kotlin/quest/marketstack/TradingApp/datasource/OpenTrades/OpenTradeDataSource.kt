@@ -1,15 +1,15 @@
 package quest.marketstack.TradingApp.datasource.OpenTrades
 
 import org.springframework.stereotype.Repository
-import quest.marketstack.TradingApp.model.Trade
+import quest.marketstack.TradingApp.model.OpenTrade
 import quest.marketstack.TradingApp.model.TradeExec
 
 @Repository
 interface OpenTradeDataSource{
 
-    fun retrieveTrades(): Collection<Trade>
-    fun retrieveTrade(id: String): Trade?
-    fun createTrades(execList: Collection<Trade>): Collection<Trade>
-    fun addExec(exec: TradeExec, id: String):Trade?
+    fun retrieveTrades(): Collection<OpenTrade>
+    fun retrieveTrade(id: String): OpenTrade?
+    fun createTrades(execList: Collection<OpenTrade>): Collection<OpenTrade>
+    fun addExec(exec: TradeExec, id: String):OpenTrade?
 
 }

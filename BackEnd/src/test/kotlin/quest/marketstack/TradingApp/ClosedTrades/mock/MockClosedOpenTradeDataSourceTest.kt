@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class MockClosedTradeDataSourceTest{
+class MockClosedOpenTradeDataSourceTest{
     private val mockDataSource = MockClosedTradeDataSource()
 
     @Test

@@ -3,7 +3,7 @@ package quest.marketstack.TradingApp.datasource.mock
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 import quest.marketstack.TradingApp.datasource.OpenTrades.OpenTradeDataSource
-import quest.marketstack.TradingApp.model.Trade
+import quest.marketstack.TradingApp.model.OpenTrade
 import quest.marketstack.TradingApp.model.TradeExec
 import java.time.LocalDate
 import java.time.LocalTime
@@ -39,23 +39,23 @@ class MockOpenTradeDataSource: OpenTradeDataSource {
             note = ""
         )
     )
-    val mockTrade = mutableListOf(Trade(id = "123", tradeExecs = mockExec, shortLong = false))
+    val mockTrade = mutableListOf(OpenTrade(id = "123", tradeExecs = mockExec, shortLong = false))
 
-    override fun retrieveTrades(): Collection<Trade> {
+    override fun retrieveTrades(): Collection<OpenTrade> {
         return mockTrade
     }
 
-    override fun retrieveTrade(id: String): Trade? {
+    override fun retrieveTrade(id: String): OpenTrade? {
         return mockTrade.firstOrNull() { it.id == id }
 
     }
 
-    override fun createTrades(execList: Collection<Trade>): Collection<Trade> {
+    override fun createTrades(execList: Collection<OpenTrade>): Collection<OpenTrade> {
         mockTrade.addAll(execList)
         return execList
     }
 
-    override fun addExec(exec: TradeExec, id: String): Trade? {
+    override fun addExec(exec: TradeExec, id: String): OpenTrade? {
         for (i in mockTrade){
             if (i.id == id) {
                 i.tradeExecs.add(exec)

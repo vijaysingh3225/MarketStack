@@ -23,17 +23,17 @@ import java.time.LocalTime
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-class OpenTradeControllerTest @Autowired constructor(
+class OpenOpenTradeControllerTest @Autowired constructor(
     val mockMvc: MockMvc,
     val objectMapper: ObjectMapper
 ) {
 
-    val baseUrl = "/api/tradeExecs"
+    val baseUrl = "/api/openTrades"
 
     @Nested
     @DisplayName("GET /api/tradeExecs")
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-    inner class GetTradeExecs {
+    inner class GetOpenTradeExecs {
         @Test
         fun `should return all Open Trades`() {
             mockMvc.get(baseUrl)
@@ -48,7 +48,7 @@ class OpenTradeControllerTest @Autowired constructor(
     @Nested
     @DisplayName("GET /api/tradeExec/{Id}")
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-    inner class GetTradeExec {
+    inner class GetOpenTradeExec {
 
         @Test
         fun `should return Not Found if the id does not exist`() {
@@ -75,7 +75,7 @@ class OpenTradeControllerTest @Autowired constructor(
     @Nested
     @DisplayName("POST /api/tradeExecs")
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-    inner class PostTradeExec {
+    inner class PostOpenTradeExec {
         @Test
         @DirtiesContext
         fun `should add a new trade execution in a new trade object`() {

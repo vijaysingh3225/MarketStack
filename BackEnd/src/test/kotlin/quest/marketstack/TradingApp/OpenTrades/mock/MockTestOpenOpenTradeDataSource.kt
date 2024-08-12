@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import quest.marketstack.TradingApp.datasource.mock.MockOpenTradeDataSource
 
 
-internal class MockTestOpenTradeDataSource {
+internal class MockTestOpenOpenTradeDataSource {
 
     private val mockDataSource = MockOpenTradeDataSource();
 

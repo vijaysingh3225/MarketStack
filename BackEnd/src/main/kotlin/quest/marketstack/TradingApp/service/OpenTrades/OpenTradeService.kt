@@ -3,15 +3,15 @@ package quest.marketstack.TradingApp.service.OpenTrades
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 import quest.marketstack.TradingApp.datasource.OpenTrades.OpenTradeDataSource
-import quest.marketstack.TradingApp.model.Trade
+import quest.marketstack.TradingApp.model.OpenTrade
 import quest.marketstack.TradingApp.model.TradeExec
 
 @Service
 @Profile("test")
 class OpenTradeService(private val dataSource: OpenTradeDataSource): OpenTradeServiceInterface {
-    override fun getTrades(): Collection<Trade> = dataSource.retrieveTrades()
+    override fun getTrades(): Collection<OpenTrade> = dataSource.retrieveTrades()
 
-    override fun getTrade(id: String): Trade? = dataSource.retrieveTrade(id)
+    override fun getTrade(id: String): OpenTrade? = dataSource.retrieveTrade(id)
 
     override fun addTradeExecs(execList: Collection<TradeExec>): Collection<TradeExec> {
         val openTrades = dataSource.retrieveTrades()
@@ -31,12 +31,24 @@ class OpenTradeService(private val dataSource: OpenTradeDataSource): OpenTradeSe
             if (!isMatch){
                 print("New Trade Opened")
                 if (i.side=="B")
-                    dataSource.createTrades(listOf(Trade(tradeExecs = mutableListOf(i), shortLong = true)))
+                    dataSource.createTrades(listOf(OpenTrade(tradeExecs = mutableListOf(i), shortLong = true)))
                 else
-                    dataSource.createTrades(listOf(Trade(tradeExecs = mutableListOf(i), shortLong = false)))
+                    dataSource.createTrades(listOf(OpenTrade(tradeExecs = mutableListOf(i), shortLong = false)))
             }
 
         }
+        //closeTrades(closedDataSource)
         return execList
     }
+//    override fun closeTrades(closedDataSource: ClosedTradeDataSource): Collection<Trade> {
+//        val openTrades = dataSource.retrieveTrades()
+//        val closedTrades = mutableListOf<Trade>()
+//        for (i in openTrades){
+//            if (i.currentSize()==0){
+//                closedTrades.add(i)
+//            }
+//        }
+//        closedDataSource.createTrade(closedTrades)
+//        return closedTrades
+//    }
 }

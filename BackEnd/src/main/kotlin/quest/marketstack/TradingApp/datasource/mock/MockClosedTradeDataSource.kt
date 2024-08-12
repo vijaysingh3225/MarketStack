@@ -1,7 +1,7 @@
 package quest.marketstack.TradingApp.datasource.mock
 
 import quest.marketstack.TradingApp.datasource.ClosedTrades.ClosedTradeDataSource
-import quest.marketstack.TradingApp.model.Trade
+import quest.marketstack.TradingApp.model.OpenTrade
 import quest.marketstack.TradingApp.model.TradeExec
 import java.time.LocalDate
 import java.time.LocalTime
@@ -21,16 +21,16 @@ class MockClosedTradeDataSource : ClosedTradeDataSource {
             clearingBroker = "MNGD", liquidity = "", note = ""
         )
     )
-    val mockTrade = mutableListOf(Trade(id = "123", tradeExecs = mockExec, shortLong = false))
-    override fun retrieveTrades(): Collection<Trade> {
+    val mockTrade = mutableListOf(OpenTrade(id = "123", tradeExecs = mockExec, shortLong = false))
+    override fun retrieveTrades(): Collection<OpenTrade> {
         return mockTrade
     }
 
-    override fun retrieveTrade(id: String): Trade? {
+    override fun retrieveTrade(id: String): OpenTrade? {
         return mockTrade.firstOrNull() { it.id == id }
     }
 
-    override fun createTrade(execList: Collection<Trade>): Collection<Trade> {
+    override fun createTrade(execList: Collection<OpenTrade>): Collection<OpenTrade> {
         mockTrade.addAll(execList)
         return execList
     }

@@ -7,7 +7,7 @@ import quest.marketstack.TradingApp.datasource.ClosedTrades.ClosedTradeDataSourc
 import quest.marketstack.TradingApp.service.ClosedTrades.ClosedTradeService
 
 
-class ClosedTradeServiceTest{
+class ClosedOpenTradeServiceTest{
     private val dataSource: ClosedTradeDataSource = mockk(relaxed = true)
 
     private val tradeService = ClosedTradeService(dataSource)
