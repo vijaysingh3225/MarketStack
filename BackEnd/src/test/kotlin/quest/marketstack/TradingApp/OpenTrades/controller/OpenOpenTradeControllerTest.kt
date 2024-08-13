@@ -129,5 +129,9 @@ class OpenOpenTradeControllerTest @Autowired constructor(
                     jsonPath("$[0].tradeExecs", hasSize<Any>(2))
                 }
         }
-        }
+        @Test
+        fun `should close`() {
+            
+        }    
+    }
 }

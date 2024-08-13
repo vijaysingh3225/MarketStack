@@ -10,7 +10,7 @@ import quest.marketstack.TradingApp.service.OpenTrades.OpenTradeService
 private val dataSource: OpenTradeDataSource = mockk(relaxed = true)
 private val closedDataSource: ClosedTradeDataSource = mockk(relaxed = true)
 
-private val tradeService = OpenTradeService(dataSource)
+private val tradeService = OpenTradeService(dataSource, closedDataSource)
 
 class OpenOpenTradeServiceTest{
     @Test

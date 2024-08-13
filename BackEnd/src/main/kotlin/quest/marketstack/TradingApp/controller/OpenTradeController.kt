@@ -9,7 +9,7 @@ import quest.marketstack.TradingApp.service.OpenTrades.OpenTradeServiceInterface
 
 @RestController
 @RequestMapping("/api/openTrades")
-@CrossOrigin(origins = ["http://localhost:3000","http://192.168.86.244:3000"])
+@CrossOrigin(origins = ["http://localhost:5173","http://192.168.86.244:3000"])
     class OpenTradeController(private val service: OpenTradeServiceInterface) {
     @GetMapping
     fun getTradeExecs(): Collection<OpenTrade> = service.getTrades();

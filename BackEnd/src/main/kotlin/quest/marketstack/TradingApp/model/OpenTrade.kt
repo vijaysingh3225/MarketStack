@@ -97,6 +97,10 @@ data class OpenTrade(
         }
         return size
     }
+    fun covertToClosed(openTrade: OpenTrade):ClosedTrade{
+        val newClosedTrade:ClosedTrade = ClosedTrade(openTrade.id, openTrade.tradeExecs, openTrade.shortLong)
+        return newClosedTrade
+    }
 
 }
 

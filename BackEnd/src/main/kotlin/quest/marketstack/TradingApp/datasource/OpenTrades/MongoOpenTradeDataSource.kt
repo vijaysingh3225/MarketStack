@@ -24,6 +24,15 @@ class MongoOpenTradeDataSource @Autowired constructor(
     override fun createTrades(execList: Collection<OpenTrade>): Collection<OpenTrade> {
         return mongoOpenTradeRepository.saveAll(execList)
     }
+
+    override fun deleteTrade(id: String): OpenTrade? {
+        val trade = mongoOpenTradeRepository.findById(id).orElse(null)
+        if (trade != null)
+            mongoOpenTradeRepository.deleteById(id)
+
+        return trade
+    }
+
     override fun addExec(exec: TradeExec, id: String): OpenTrade? {
         val trade = mongoOpenTradeRepository.findById(id).orElseThrow {
             RuntimeException("Trade not found with ID: $id")
