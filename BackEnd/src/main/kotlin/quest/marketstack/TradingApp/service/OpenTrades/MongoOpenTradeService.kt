@@ -28,7 +28,7 @@ class MongoOpenTradeService(private val dataSource: MongoOpenTradeDataSource,pri
                     if ((j.shortLong&&(i.side=="SS"||i.side=="BC"))||(!j.shortLong&&(i.side=="B"||i.side=="S"))){
                         continue
                     }
-                    print("Execution added to existing trade")
+                    print("Execution added to existing trade sdfsdf")
                     dataSource.addExec(i, tradeId)
                     isMatch = true
                 }
