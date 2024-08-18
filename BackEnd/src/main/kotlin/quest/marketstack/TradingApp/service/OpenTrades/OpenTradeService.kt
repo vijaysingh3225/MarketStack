@@ -16,9 +16,11 @@ class OpenTradeService(private val dataSource: OpenTradeDataSource,private val c
     override fun getTrade(id: String): OpenTrade? = dataSource.retrieveTrade(id)
 
     override fun addTradeExecs(execList: Collection<TradeExec>): Collection<TradeExec> {
-        val openTrades = dataSource.retrieveTrades()
+        var openTrades = dataSource.retrieveTrades()
         var isMatch = false
         for (i in execList) {
+            openTrades = dataSource.retrieveTrades()
+            isMatch=false
             for (j in openTrades) {
                 val tradeId = j.id
                 if (i.symbol == j.tradeExecs.first().symbol && tradeId != null) {
@@ -32,9 +34,9 @@ class OpenTradeService(private val dataSource: OpenTradeDataSource,private val c
             }
             if (!isMatch){
                 print("New Trade Opened")
-                if (i.side=="B")
+                if (i.side == "B")
                     dataSource.createTrades(listOf(OpenTrade(tradeExecs = mutableListOf(i), shortLong = true)))
-                else
+                if (i.side == "SS")
                     dataSource.createTrades(listOf(OpenTrade(tradeExecs = mutableListOf(i), shortLong = false)))
             }
 
@@ -46,7 +48,8 @@ class OpenTradeService(private val dataSource: OpenTradeDataSource,private val c
         val openTrades = dataSource.retrieveTrades()
         val closedTrades = mutableListOf<ClosedTrade>()
         for (i in openTrades){
-            if (i.currentSize()==0){
+            if (i.currentSize==0){
+                i.id?.let { dataSource.deleteTrade(it) }
                 closedDataSource.createTrade(listOf(i.covertToClosed(i)))
             }
         }

@@ -9,26 +9,8 @@ data class OpenTrade(
             val id: String? = null,
             var tradeExecs: MutableCollection<TradeExec> = mutableListOf(),
             val shortLong: Boolean){
-    private fun getCurrentSize(): Int {
-        var size = 0
-        if(shortLong){
-            for (i in tradeExecs){
-                if (i.side == "B")
-                    size+=i.quantity
-                else
-                    size-=i.quantity
-            }
-        }
-        else
-            for (i in tradeExecs){
-                if (i.side == "SS")
-                    size+=i.quantity
-                else
-                    size-=i.quantity
-            }
-        return size;
-    }
-    private fun getProfitLoss():Double{
+
+    val ProfitLoss:Double get(){
         var openAvg = 0.0
         var closeAvg = 0.0
         var openExecs = 0
@@ -77,7 +59,7 @@ data class OpenTrade(
     fun addExec(newExec: TradeExec){
         tradeExecs.add(newExec)
     }
-    fun currentSize():Int{
+    val currentSize:Int get(){
         var size = 0
         if (shortLong){
             for (i in tradeExecs){

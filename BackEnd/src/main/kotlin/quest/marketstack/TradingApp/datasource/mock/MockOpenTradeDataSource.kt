@@ -20,8 +20,8 @@ class MockOpenTradeDataSource: OpenTradeDataSource {
             netProceeds = 860.73, clearingBroker = "MNGD", liquidity = "", note = ""
         ),
         TradeExec(
-            id = "629", account = "2313", tradeDate = LocalDate.of(2014, 3, 45), settlementDate = LocalDate.of(2021, 9, 15),
-            currency = "USD", type = 3, side = "SS", symbol = "KEY", quantity = 200, price = 4.3038, execTime = LocalTime.of(14, 45, 30),commission = 0.0,
+            id = "629", account = "2313", tradeDate = LocalDate.of(2014, 3, 24), settlementDate = LocalDate.of(2021, 9, 15),
+            currency = "USD", type = 3, side = "SS", symbol = "UROY", quantity = 200, price = 4.3038, execTime = LocalTime.of(14, 45, 30),commission = 0.0,
             secFee = 0.01, taf = 0.02, nscc = 0.0, nasdaq = 0.0, ecnRemove = 0.0, ecnAdd = 0.0, grossProceeds = 860.76, netProceeds = 860.73, clearingBroker = "MNGD", liquidity = "", note = ""
         )
     )
