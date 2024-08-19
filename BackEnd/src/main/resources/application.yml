@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: TradingApp
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/MarketStack
+  profiles:
+    active: default
+
+api:
+  closed-trade:
+    base-url: /api/v1/closedTrades
+    collection: Trade-Closed
+  open-trade:
+    base-url: /api/v1/openTrades
+    collection: Trade-Open
+
