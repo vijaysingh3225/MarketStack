@@ -10,48 +10,44 @@ data class ClosedTrade(
     var tradeExecs: MutableCollection<TradeExec> = mutableListOf(),
     val shortLong: Boolean,
 ) {
-    val getProfitLoss: Double get() {
-        var openAvg = 0.0
-        var closeAvg = 0.0
-        var openExecs = 0
-        var closeExecs = 0
-        var openShares = 0
-        var closedShares = 0
-
-        if (shortLong) {
-            for (i in tradeExecs) {
-                if (i.side == "B") {
-                    openExecs++
-                    openAvg += (i.price * i.quantity)
-                    openShares += i.quantity
-                } else {
-                    closeExecs++
-                    openAvg += (i.price * i.quantity)
-                    closedShares += i.quantity
+    val maxPosition: Int get() {
+        var max: Int = 0
+        var current: Int = 0
+        for (i in tradeExecs) {
+            if (i.side == "B" || i.side == "SS") {
+                current += i.quantity
+                if (current > max) {
+                    max = current
                 }
-            }
-        } else {
-            for (i in tradeExecs) {
-                if (i.side == "SS") {
-                    openExecs++
-                    openAvg += (i.price * i.quantity)
-                    openShares += i.quantity
-                } else {
-                    closeExecs++
-                    openAvg += (i.price * i.quantity)
-                    closedShares += i.quantity
-                }
+            } else {
+                current -= i.quantity
             }
         }
-        openAvg /= openExecs
-        closeAvg /= closeExecs
-        val profitLoss: Double =
-            if (shortLong) {
-                (openShares * openAvg) - (closedShares * closeAvg)
-            } else {
-                (closedShares * closeAvg) - (openShares * openAvg)
+        return max
+    }
+
+    val profitLoss: Double get() {
+        var openAvg = 0.0
+        var closeAvg = 0.0
+        var openShares = 0
+        var closeShares = 0
+
+        for (i in tradeExecs) {
+            if (i.side == "B" || i.side == "BC") { // Buy or Buy to Cover
+                openShares += i.quantity
+                openAvg += (i.quantity * i.price)
+            } else { // Sell or Short Sell
+                closeShares += i.quantity
+                closeAvg += (i.quantity * i.price)
             }
-        return profitLoss
+        }
+
+        // Calculate averages
+        openAvg = if (openShares != 0) openAvg / openShares else 0.0
+        closeAvg = if (closeShares != 0) closeAvg / closeShares else 0.0
+
+        // Calculate profit/loss
+        return (closeAvg - openAvg) * minOf(openShares, closeShares)
     }
 
     fun addExec(newExec: TradeExec) {

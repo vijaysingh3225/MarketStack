@@ -6,7 +6,7 @@ function App() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/openTrades')
+    axios.get('http://localhost:8080/api/v1/closedTrades')
       .then(response => {
         setData(response.data);
       })
