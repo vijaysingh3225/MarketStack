@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './TradeList.css';
 
 interface TradeExec {
   symbol: string;
   tradeDate: string;
+  price: number;
 }
 
 interface Trade {
@@ -26,15 +28,24 @@ const TradeList: React.FC = () => {
 
   const renderTradeItem = (trade: Trade) => (
     <div key={trade.id} className="trade-item">
-      <h3>Symbol: {trade.tradeExecs[0].symbol}</h3>
-      <p>Date: {trade.tradeExecs[0].tradeDate}</p>
-      <p>Profit/Loss: ${trade.profitLoss}</p>
+      <table>
+        <tr>
+          <td>{trade.tradeExecs[0].tradeDate}</td>
+          <td>{trade.tradeExecs[0].symbol}</td>
+          <td>${trade.profitLoss}</td>
+        </tr>
+      </table>
 
     </div>
   );
 
   return (
     <div>
+      <table>
+        <th>Date</th>
+        <th>Symbol</th>
+        <th>Profit/Loss</th>
+      </table>
       {trades.map(renderTradeItem)}
     </div>
   );

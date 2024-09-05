@@ -8,7 +8,6 @@ import TradeList from './Components/TradeList.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
     <ImportButton />
     <TradeList />
   </StrictMode>,
