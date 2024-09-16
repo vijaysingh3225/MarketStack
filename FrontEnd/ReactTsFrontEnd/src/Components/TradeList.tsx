@@ -13,7 +13,7 @@ interface Trade {
   tradeExecs: TradeExec[];
   profitLoss: number;
 }
-
+// thymeleaf renderer
 const TradeList: React.FC = () => {
   const [trades, setTrades] = useState<Trade[]>([]);
   useEffect(() => {
@@ -32,7 +32,7 @@ const TradeList: React.FC = () => {
         <tr>
           <td>{trade.tradeExecs[0].tradeDate}</td>
           <td>{trade.tradeExecs[0].symbol}</td>
-          <td>${trade.profitLoss}</td>
+          <td>${trade.profitLoss.toFixed(2)}</td>
         </tr>
       </table>
 

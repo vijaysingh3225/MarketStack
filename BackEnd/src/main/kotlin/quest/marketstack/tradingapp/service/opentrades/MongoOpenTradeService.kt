@@ -44,8 +44,9 @@ class MongoOpenTradeService(
                     dataSource.createTrades(listOf(OpenTrade(tradeExecs = mutableListOf(i), shortLong = false)))
                 }
             }
+            closeTrades(closedDataSource)
         }
-        closeTrades(closedDataSource)
+
         return execList
     }
 
