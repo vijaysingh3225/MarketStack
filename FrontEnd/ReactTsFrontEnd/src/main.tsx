@@ -1,14 +1,18 @@
-import { StrictMode } from 'react'
+import NavBar from './Components/NavBar.tsx'
 import { createRoot } from 'react-dom/client'
-import App from './Components/App.tsx'
-import ImportButton from './Components/import.tsx'
 import './index.css'
 import TradeList from './Components/TradeList.tsx'
+import { StrictMode } from 'react'
+import PnlGraph from './Components/PnlGraph.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ImportButton />
+    <div className='mainContent'>
     <TradeList />
-  </StrictMode>,
+    <PnlGraph/>
+    </div>
+    <NavBar />
+    
+  </StrictMode>
 )

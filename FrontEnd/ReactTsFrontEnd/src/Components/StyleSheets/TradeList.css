@@ -1,0 +1,53 @@
+* {
+    color: white;
+}
+.tradeList{
+    width:46%;
+}
+
+table {
+    background-color: #AFAFAF;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); 
+    width: 100%;
+}
+
+td, th {
+    margin: auto;
+    height: 35px;
+}
+
+td{
+    cursor:pointer;
+}
+th {
+    background-color: #686868;
+    border: none;
+    color: white;
+}
+
+tbody tr {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+tbody tr:hover {
+    background-color: #949494;
+    transform: scale(1.02);
+}
+
+tr:nth-child(even) {
+    background-color: #494949;
+}
+
+tr:nth-child(odd) {
+    background-color: #3C3C3C;
+}
+
+.profitLoss{
+    font-weight: 400;
+}

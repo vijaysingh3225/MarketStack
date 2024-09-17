@@ -3,6 +3,15 @@
 }
 
 body{
-  background-color: #444444;
+  background-color: #282828;
   color: white;
+}
+.mainContent{
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 81%;
+  margin-top: 120px;
+  margin-left: 17%;
+  min-width: 1000px;
 }

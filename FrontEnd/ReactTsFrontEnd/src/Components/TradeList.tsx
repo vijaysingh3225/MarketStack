@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './TradeList.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./StyleSheets/TradeList.css";
 
 interface TradeExec {
   symbol: string;
@@ -12,41 +12,71 @@ interface Trade {
   id: string;
   tradeExecs: TradeExec[];
   profitLoss: number;
+  avgEntry: number;
+  avgExit: number;
+  shortLong: boolean;
+  maxPosition: number;
 }
-// thymeleaf renderer
+
 const TradeList: React.FC = () => {
   const [trades, setTrades] = useState<Trade[]>([]);
+
   useEffect(() => {
-    axios.get('http://localhost:8080/api/v1/closedTrades')
-      .then(response => {
-        setTrades(response.data);
+    axios
+      .get("http://localhost:8080/api/v1/closedTrades")
+      .then((response) => {
+        // Sort trades by tradeDate in descending order
+        const sortedTrades = response.data.sort(
+          (a: Trade, b: Trade) =>
+            new Date(b.tradeExecs[0].tradeDate).getTime() -
+            new Date(a.tradeExecs[0].tradeDate).getTime()
+        );
+
+        // Slice the sorted trades to get only the latest 20
+        const latestTrades = sortedTrades.slice(0, 20);
+
+        setTrades(latestTrades);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("There was an error fetching the trades!", error);
       });
   }, []);
 
-  const renderTradeItem = (trade: Trade) => (
-    <div key={trade.id} className="trade-item">
-      <table>
-        <tr>
-          <td>{trade.tradeExecs[0].tradeDate}</td>
-          <td>{trade.tradeExecs[0].symbol}</td>
-          <td>${trade.profitLoss.toFixed(2)}</td>
-        </tr>
-      </table>
+  // Function to determine the color based on profitLoss
+  const getProfitLossColor = (profitLoss: number) => {
+    return profitLoss >= 0 ? "#1BCE00" : "#E45C5C";
+  };
 
-    </div>
+  const renderTradeItem = (trade: Trade) => (
+    <tr key={trade.id}>
+      <td>{trade.tradeExecs[0].tradeDate}</td>
+      <td>{trade.tradeExecs[0].symbol}</td>
+      <td className='profitLoss' style={{ color: getProfitLossColor(trade.profitLoss) }}>
+        ${trade.profitLoss.toFixed(2)}
+      </td>
+      <td>{trade.shortLong ? "Long" : "Short"}</td>
+      <td>{trade.avgEntry.toFixed(2)}</td>
+      <td>{trade.avgExit.toFixed(2)}</td>
+      <td>{trade.maxPosition}</td>
+    </tr>
   );
 
   return (
-    <div>
+    <div className="tradeList">
       <table>
-        <th>Date</th>
-        <th>Symbol</th>
-        <th>Profit/Loss</th>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Symbol</th>
+            <th>Profit/Loss</th>
+            <th>Direction</th>
+            <th>Avg Entry</th>
+            <th>Avg Exit</th>
+            <th>Max Position</th>
+          </tr>
+        </thead>
+        <tbody>{trades.map(renderTradeItem)}</tbody>
       </table>
-      {trades.map(renderTradeItem)}
     </div>
   );
 };

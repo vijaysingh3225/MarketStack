@@ -124,11 +124,6 @@ function ImportButton() {
         <div>
             <input type="file" accept=".csv" onChange={handleFileChange} />
             <button type="button" onClick={handleImport}>Import</button>
-
-            <div>
-                <h3>Imported Data:</h3>
-                <pre>{JSON.stringify(jsonData, null, 2)}</pre>
-            </div>
         </div>
     );
 }

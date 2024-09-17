@@ -75,12 +75,28 @@ data class ClosedTrade(
         }
         return size
     }
-    val AvgEntry: Double
+    val avgEntry: Double
         get() {
             var totalShares = 0
             var totalValue: Double = 0.0
             for (i in tradeExecs) {
                 if (i.side == "B" || i.side == "SS") {
+                    totalShares += i.quantity
+                    totalValue += (i.quantity * i.price)
+                }
+            }
+            return if (totalShares > 0) {
+                totalValue / totalShares
+            } else {
+                0.0 // Return 0 if no shares exist to avoid division by zero
+            }
+        }
+    val avgExit: Double
+        get() {
+            var totalShares = 0
+            var totalValue: Double = 0.0
+            for (i in tradeExecs) {
+                if (i.side == "S" || i.side == "BC") {
                     totalShares += i.quantity
                     totalValue += (i.quantity * i.price)
                 }
