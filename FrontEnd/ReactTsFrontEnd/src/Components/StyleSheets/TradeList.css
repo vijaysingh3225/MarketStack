@@ -1,19 +1,22 @@
 * {
     color: white;
+    font-weight: 100;
 }
 .tradeList{
     width:46%;
 }
 
 table {
-    background-color: #AFAFAF;
+    background: rgb(91,91,91);
+    background: linear-gradient(308deg, rgba(91,91,91,1) 0%, rgba(79,79,79,1) 38%, rgba(70,70,70,1) 70%, rgba(57,57,57,1) 100%);    
     text-align: center;
     vertical-align: middle;
     border-radius: 10px;
     border-collapse: separate;
     border-spacing: 0;
+    border:none;
     overflow: hidden;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.44);
     width: 100%;
 }
 
@@ -26,7 +29,7 @@ td{
     cursor:pointer;
 }
 th {
-    background-color: #686868;
+    background-color: #5B5B5B;
     border: none;
     color: white;
 }
@@ -38,16 +41,4 @@ tbody tr {
 tbody tr:hover {
     background-color: #949494;
     transform: scale(1.02);
-}
-
-tr:nth-child(even) {
-    background-color: #494949;
-}
-
-tr:nth-child(odd) {
-    background-color: #3C3C3C;
-}
-
-.profitLoss{
-    font-weight: 400;
 }

@@ -3,7 +3,8 @@
 }
 
 body{
-  background-color: #282828;
+  background: rgb(65,65,65);
+background: radial-gradient(circle, rgba(65,65,65,1) 0%, rgba(51,51,51,1) 50%, rgba(40,40,40,1) 100%);
   color: white;
 }
 .mainContent{
