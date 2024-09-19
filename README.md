@@ -29,4 +29,4 @@ One of the main ways a trader improves is by looking at their trades in abstract
 This kind of trade data is very sensitive and the architecture must take that into account. There must my a comprehensive registraion, login, and account services system that ensures the privacy and safety of sensative trade information in the database. Users should be able to access all their own data and nobody elses, as well as having the power to wipe any data at any time.
 
 ## Technology
-<img src="ReadMeImages\Spring Boot.png" width="100px">
+<img src="ReadMeImages\SpringBoot.png" width="100px">
