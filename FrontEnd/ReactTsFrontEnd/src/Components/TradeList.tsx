@@ -44,7 +44,7 @@ const TradeList: React.FC = () => {
 
   // Function to determine the color based on profitLoss
   const getProfitLossColor = (profitLoss: number) => {
-    return profitLoss >= 0 ? "#1BCE00" : "#E45C5C";
+    return profitLoss >= 0 ? "#7A9163" : "#AC3231";
   };
 
   const renderTradeItem = (trade: Trade) => (

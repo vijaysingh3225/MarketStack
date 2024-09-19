@@ -1,0 +1,23 @@
+.top-bar{
+    height:40px;
+    width:120%;
+    margin-left: 250px;
+    
+    display: flex;
+    justify-content: right;
+  }
+  .timeFrameSelection{
+    margin-left: 20px;
+    background-color: #2b2b2b;
+    border: 1px solid #EDE0A4;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+  }
+
+  .timeFrameSelection:hover{
+    transform: scale(1.2);
+    background-color: #686868;
+    cursor: pointer;
+
+  }

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
-import "./StyleSheets/PnlGraph.css";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ChartOptions } from 'chart.js';
+import "./StyleSheets/PnlHistogram.css";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartOptions } from 'chart.js';
 
 // Register Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
@@ -27,13 +26,23 @@ interface Trade {
   profitLoss: number;
 }
 
-const PnlGraph: React.FC = () => {
-  const [chartData, setChartData] = useState<any>(null);
+const PnlHistogram: React.FC = () => {
+  const [chartData, setChartData] = useState<{
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      backgroundColor: string[];
+      borderColor: string[];
+      borderWidth: number;
+    }[];
+  } | null>(null);
 
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/v1/closedTrades")
       .then((response) => {
+        // Prepare data for histogram, limited to the last 60 trades
         const sortedTrades = response.data.sort(
           (a: Trade, b: Trade) =>
             new Date(a.tradeExecs[0].tradeDate).getTime() - new Date(b.tradeExecs[0].tradeDate).getTime()
@@ -42,27 +51,25 @@ const PnlGraph: React.FC = () => {
         // Limit to the last 60 trades
         const last60Trades = sortedTrades.slice(-50);
 
-        // Calculate cumulative PnL
-        let cumulativePnL = 0;
-        const cumulativeData = last60Trades.map((trade: Trade) => {
-          cumulativePnL += trade.profitLoss;
-          return {
-            tradeDate: trade.tradeExecs[0].tradeDate,
-            cumulativePnL: cumulativePnL,
-          };
-        });
+        // Extract trade dates and values
+        const tradeDates: string[] = last60Trades.map((trade: Trade) => new Date(trade.tradeExecs[0].tradeDate).toLocaleDateString());
+        const tradeValues: number[] = last60Trades.map((trade: Trade) => trade.profitLoss);
+
+        // Set bar colors based on value
+        const barColors: string[] = tradeValues.map(value =>
+          value >= 0 ? '#7A9163' : '#AC3231'
+        );
 
         // Set chart data for Chart.js
         setChartData({
-          labels: cumulativeData.map((data: any) => new Date(data.tradeDate).toLocaleDateString()),
+          labels: tradeDates,
           datasets: [
             {
-              label: 'Cumulative Profit/Loss',
-              data: cumulativeData.map((data: any) => data.cumulativePnL),
-              borderColor: '#7A9163', // Line color
-              backgroundColor: 'rgb(122, 145, 99, 0.4)', // Fill color under the line
-              fill: true, // Fill the area under the line
-              tension: 0.3, // Smooth curves
+              label: 'Trade Profit/Loss',
+              data: tradeValues,
+              backgroundColor: barColors, // Dynamic bar colors
+              borderColor: barColors.map(color => color.replace('0.5', '1')), // Adjust border color
+              borderWidth: 1,
             },
           ],
         });
@@ -72,7 +79,7 @@ const PnlGraph: React.FC = () => {
       });
   }, []);
 
-  const options: ChartOptions<'line'> = {
+  const options: ChartOptions<'bar'> = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -84,7 +91,7 @@ const PnlGraph: React.FC = () => {
       },
       title: {
         display: true,
-        text: 'Cumulative Profit/Loss',
+        text: 'Trade Histogram',
         color: 'white', // Title color
         font: {
           size: 20, // Title font size
@@ -95,7 +102,7 @@ const PnlGraph: React.FC = () => {
       x: {
         title: {
           display: true,
-          text: 'Date',
+          text: 'Trade Date',
           color: 'white', // X-axis label color
           font: {
             size: 16, // X-axis label font size
@@ -103,6 +110,8 @@ const PnlGraph: React.FC = () => {
         },
         ticks: {
           color: 'white', // X-axis tick labels color
+          maxRotation: 90, // Rotate labels for better readability if needed
+          autoSkip: true, // Auto-skip labels to avoid clutter
         },
         grid: {
           color: '#353535', // X-axis grid lines color
@@ -111,7 +120,7 @@ const PnlGraph: React.FC = () => {
       y: {
         title: {
           display: true,
-          text: 'Cumulative PnL ($)',
+          text: 'Profit/Loss ($)',
           color: 'white', // Y-axis label color
           font: {
             size: 16, // Y-axis label font size
@@ -130,15 +139,15 @@ const PnlGraph: React.FC = () => {
   return (
     <div className="graph">
       {chartData ? (
-        <Line
+        <Bar
           data={chartData}
           options={options}
         />
       ) : (
-        <p>Loading graph...</p>
+        <p>Loading histogram...</p>
       )}
     </div>
   );
 };
 
-export default PnlGraph;
+export default PnlHistogram;
