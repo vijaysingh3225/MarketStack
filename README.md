@@ -30,3 +30,5 @@ This kind of trade data is very sensitive and the architecture must take that in
 
 ## Technology
 <img src="ReadMeImages\SpringBoot.png" width="100px">
+<img src="ReadMeImages\Kotlin.jfif" width="100px">
+
