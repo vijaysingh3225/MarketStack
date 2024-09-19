@@ -18,6 +18,7 @@ Importing trades will be the core of this application and there are several comp
 
 ### Dashboard
 <img src="ReadMeImages\Dashboard.png" alt="Dashboard">
+*CURRENT IN-PROGRESS STATE"
 
 The heart of this application is the dashboard. Users should be able to enter their dashboard and be able to easily see the data they want to see to get an accurate view of what their performance has been in whatever period of time. This will be the landing page for a logged in account and this page will focus on various forms of permorance metrics. Things like equity curves, performance graphs and statistics should be easily accessable
 
@@ -44,3 +45,11 @@ This kind of trade data is very sensitive and the architecture must take that in
  <img src="ReadMeImages\MarketStackArchitecture.png">
 
  ## Architecture Details
+
+ ### Overview
+The core function app is based upon the flow of data initialized by the user, flowed and sorted into the database structure and then retrieve and manipulated up to the UI. For best understading of the structure you can observe the architecture diagram above and follow the route of data as described.
+
+### Data Flow
+Brokers will offer users their trade history in the form of csv files with data consisting of all trade executions taken in a certain period of time. This data can be inputted on the front end into a react component that will hit the end point /openTrades (Post End Point) which will parse the csv into valid JSON format and post the data. This end point is configured to receive objects called "TradeExec" which are meant to represent a single trade execution. 
+ 
+ <img src="ReadMeImages\ClassDiagram.png">

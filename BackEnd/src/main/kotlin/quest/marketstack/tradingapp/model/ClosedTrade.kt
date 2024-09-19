@@ -54,27 +54,6 @@ data class ClosedTrade(
         tradeExecs.add(newExec)
     }
 
-    val currentSize: Int get() {
-        var size = 0
-        if (shortLong) {
-            for (i in tradeExecs) {
-                if (i.side == "B") {
-                    size += i.quantity
-                } else {
-                    size -= i.quantity
-                }
-            }
-        } else {
-            for (i in tradeExecs) {
-                if (i.side == "SS") {
-                    size -= i.quantity
-                } else {
-                    size += i.quantity
-                }
-            }
-        }
-        return size
-    }
     val avgEntry: Double
         get() {
             var totalShares = 0
