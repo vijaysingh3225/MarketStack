@@ -30,12 +30,11 @@ This kind of trade data is very sensitive and the architecture must take that in
 
 ## Technology
 <p>
-<img src="ReadMeImages\SpringBoot.png" width="80px" style="display: inline;">
-<img src="ReadMeImages\Kotlin.png" width="80px" style="display: inline;">
-<img src="ReadMeImages\TypeScript.png" width="80px" style="display: inline;">
-<img src="ReadMeImages\react.png" width="80px" style="display: inline;">
-<img src="ReadMeImages\react.png" width="80px" style="display: inline;">
-<img src="ReadMeImages\mongodb.png" width="80px" style="display: inline;">
-<img src="ReadMeImages\html.png" width="80px" style="display: inline;">
-<img src="ReadMeImages\css.png" width="80px" style="display: inline;">
+<img src="ReadMeImages\SpringBoot.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\Kotlin.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\TypeScript.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\react.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\mongodb.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\html.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\css.png" width="80px" height="80px" style="display: inline;">
 </p>
