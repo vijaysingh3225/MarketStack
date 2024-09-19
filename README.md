@@ -17,6 +17,7 @@ These are the core features the application should have in a fully developed ver
 Importing trades will be the core of this application and there are several complications to get through. Every broker send out a user's trade history in differently formated csv files so the application has to be capable of parsing majority of popular broker's format into a single json format to be received by the endpoint
 
 ### Dashboard
+<img src="ReadMeImages\Dashboard" alt="Dashboard">
 
 The heart of this application is the dashboard. Users should be able to enter their dashboard and be able to easily see the data they want to see to get an accurate view of what their performance has been in whatever period of time. This will be the landing page for a logged in account and this page will focus on various forms of permorance metrics. Things like equity curves, performance graphs and statistics should be easily accessable
 
@@ -41,3 +42,5 @@ This kind of trade data is very sensitive and the architecture must take that in
 
 ## App Architecture
  <img src="ReadMeImages\MarketStackArchitecture.png">
+
+ ## Architecture Details
