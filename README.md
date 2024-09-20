@@ -64,3 +64,9 @@ The flow from the data base to the UI is a lot simpler since all the sorting was
 ### Class Diagram
  
  <img src="ReadMeImages\ClassDiagram.png" style="margin: auto;">
+
+### Design
+
+Majority of market based websites tend to go in the direction of neon colors because of the primary colors being red and green. I decided to take a different road and chose the following color pallette for a a more neutral dark theme approach. This is the garden pallette and focuses on more natural colors.
+
+<img src="ReadMeImages\Pallette.png">
