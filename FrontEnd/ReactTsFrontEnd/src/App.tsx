@@ -6,6 +6,7 @@ import PnlGraph from './Components/PnlGraph';
 import PnlHistogram from './Components/PnlHistogram';
 import ImportButton from './Components/import';
 import TopBar from './Components/TopBar';
+import DashStats from './Components/DashStats';
 import './index.css';
 
 const App: React.FC = () => {
@@ -21,7 +22,7 @@ const App: React.FC = () => {
       <PnlHistogram tradeCount={tradeCount} />
       <PnlGraph tradeCount={tradeCount} />
       <TradeList />
-      <ImportButton />
+      <DashStats />
       <NavBar />
     </div>
   );
