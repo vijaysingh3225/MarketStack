@@ -26,49 +26,43 @@ interface Trade {
   profitLoss: number;
 }
 
-const PnlHistogram: React.FC = () => {
-  const [chartData, setChartData] = useState<{
-    labels: string[];
-    datasets: {
-      label: string;
-      data: number[];
-      backgroundColor: string[];
-      borderColor: string[];
-      borderWidth: number;
-    }[];
-  } | null>(null);
+interface PnlHistogramProps {
+  tradeCount: number; // Add this prop
+}
+
+const PnlHistogram: React.FC<PnlHistogramProps> = ({ tradeCount }) => {
+  const [chartData, setChartData] = useState<any>(null);
 
   useEffect(() => {
+    // Fetch data when component mounts or when tradeCount changes
     axios
       .get("http://localhost:8080/api/v1/closedTrades")
       .then((response) => {
-     
         const sortedTrades = response.data.sort(
           (a: Trade, b: Trade) =>
             new Date(a.tradeExecs[0].tradeDate).getTime() - new Date(b.tradeExecs[0].tradeDate).getTime()
         );
 
-      
-        const last60Trades = sortedTrades.slice(-50);
+        // Slice the number of trades based on the tradeCount prop
+        const selectedTrades = sortedTrades.slice(-tradeCount);
 
-      
-        const tradeDates: string[] = last60Trades.map((trade: Trade) => new Date(trade.tradeExecs[0].tradeDate).toLocaleDateString());
-        const tradeValues: number[] = last60Trades.map((trade: Trade) => trade.profitLoss);
+        const tradeDates: string[] = selectedTrades.map((trade: Trade) =>
+          new Date(trade.tradeExecs[0].tradeDate).toLocaleDateString()
+        );
+        const tradeValues: number[] = selectedTrades.map((trade: Trade) => trade.profitLoss);
 
-       
         const barColors: string[] = tradeValues.map(value =>
           value >= 0 ? '#7A9163' : '#AC3231'
         );
 
-       
         setChartData({
           labels: tradeDates,
           datasets: [
             {
               label: 'Trade Profit/Loss',
               data: tradeValues,
-              backgroundColor: barColors, 
-              borderColor: barColors.map(color => color.replace('0.5', '1')), 
+              backgroundColor: barColors,
+              borderColor: barColors.map(color => color.replace('0.5', '1')),
               borderWidth: 1,
             },
           ],
@@ -77,7 +71,7 @@ const PnlHistogram: React.FC = () => {
       .catch((error) => {
         console.error("There was an error fetching the trades!", error);
       });
-  }, []);
+  }, [tradeCount]); // Add tradeCount as a dependency here
 
   const options: ChartOptions<'bar'> = {
     responsive: true,
@@ -92,9 +86,9 @@ const PnlHistogram: React.FC = () => {
       title: {
         display: true,
         text: 'Trade Histogram',
-        color: 'white', 
+        color: 'white',
         font: {
-          size: 20, 
+          size: 20,
         },
       },
     },
@@ -105,16 +99,16 @@ const PnlHistogram: React.FC = () => {
           text: 'Trade Date',
           color: 'white',
           font: {
-            size: 16, 
+            size: 16,
           },
         },
         ticks: {
-          color: 'white', 
-          maxRotation: 90, 
-          autoSkip: true, 
+          color: 'white',
+          maxRotation: 90,
+          autoSkip: true,
         },
         grid: {
-          color: '#353535', 
+          color: '#353535',
         },
       },
       y: {
@@ -123,11 +117,11 @@ const PnlHistogram: React.FC = () => {
           text: 'Profit/Loss ($)',
           color: 'white',
           font: {
-            size: 16, 
+            size: 16,
           },
         },
         ticks: {
-          color: 'white', 
+          color: 'white',
         },
         grid: {
           color: '#353535',
@@ -139,10 +133,7 @@ const PnlHistogram: React.FC = () => {
   return (
     <div className="graph">
       {chartData ? (
-        <Bar
-          data={chartData}
-          options={options}
-        />
+        <Bar data={chartData} options={options} />
       ) : (
         <p>Loading histogram...</p>
       )}

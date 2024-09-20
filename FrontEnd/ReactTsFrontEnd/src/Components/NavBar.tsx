@@ -7,7 +7,7 @@ const NavBar: React.FC = () => {
       <img src="src\images\TitleLogo.png" alt="" className='titleLogo'/>
     </div>
     <div className='navContainer'>
-        <div className='navItem'>
+        <div className='navItem selected'>
           <img src="src\images\dashboard-white.png" alt="" className='logo'/>
           <span>Dashboard</span></div>
         <div className='navItem'>

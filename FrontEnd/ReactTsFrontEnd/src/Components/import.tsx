@@ -63,7 +63,7 @@ function ImportButton() {
                 complete: (results) => {
                     const parsedData = results.data as CsvData[];
 
-                    // Transform parsed data to the desired TradeExec format
+                
                     const transformedData: TradeExec[] = parsedData.map(row => ({
                         account: row["Account"] || "",
                         tradeDate: row["T/D"] ? new Date(row["T/D"]).toISOString().split('T')[0] : "",
@@ -91,7 +91,7 @@ function ImportButton() {
 
                     setJsonData(transformedData);
 
-                    // Send data to the backend
+                
                     fetch("http://localhost:8080/api/v1/openTrades", {
                         method: "POST",
                         headers: {

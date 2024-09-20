@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
-import "./StyleSheets/PnlGraph.css";
+import './StyleSheets/PnlGraph.css';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ChartOptions } from 'chart.js';
 
-// Register Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,7 +26,11 @@ interface Trade {
   profitLoss: number;
 }
 
-const PnlGraph: React.FC = () => {
+interface PnlGraphProps {
+  tradeCount: number; // Add this prop
+}
+
+const PnlGraph: React.FC<PnlGraphProps> = ({ tradeCount }) => {
   const [chartData, setChartData] = useState<any>(null);
 
   useEffect(() => {
@@ -39,12 +42,11 @@ const PnlGraph: React.FC = () => {
             new Date(a.tradeExecs[0].tradeDate).getTime() - new Date(b.tradeExecs[0].tradeDate).getTime()
         );
 
-        // Limit to the last 60 trades
-        const last60Trades = sortedTrades.slice(-50);
+        // If tradeCount is 0, show all trades, otherwise show the specified count
+        const tradesToShow = tradeCount === 0 ? sortedTrades : sortedTrades.slice(-tradeCount);
 
-        // Calculate cumulative PnL
         let cumulativePnL = 0;
-        const cumulativeData = last60Trades.map((trade: Trade) => {
+        const cumulativeData = tradesToShow.map((trade: Trade) => {
           cumulativePnL += trade.profitLoss;
           return {
             tradeDate: trade.tradeExecs[0].tradeDate,
@@ -52,17 +54,16 @@ const PnlGraph: React.FC = () => {
           };
         });
 
-        // Set chart data for Chart.js
         setChartData({
           labels: cumulativeData.map((data: any) => new Date(data.tradeDate).toLocaleDateString()),
           datasets: [
             {
               label: 'Cumulative Profit/Loss',
               data: cumulativeData.map((data: any) => data.cumulativePnL),
-              borderColor: '#7A9163', // Line color
-              backgroundColor: 'rgb(122, 145, 99, 0.4)', // Fill color under the line
-              fill: true, // Fill the area under the line
-              tension: 0.3, // Smooth curves
+              borderColor: '#7A9163',
+              backgroundColor: 'rgb(122, 145, 99, 0.4)',
+              fill: true,
+              tension: 0.3,
             },
           ],
         });
@@ -70,7 +71,7 @@ const PnlGraph: React.FC = () => {
       .catch((error) => {
         console.error("There was an error fetching the trades!", error);
       });
-  }, []);
+  }, [tradeCount]); // Re-run the effect when tradeCount changes
 
   const options: ChartOptions<'line'> = {
     responsive: true,
@@ -79,15 +80,15 @@ const PnlGraph: React.FC = () => {
       legend: {
         position: 'top',
         labels: {
-          color: 'white', // Legend text color
+          color: 'white',
         },
       },
       title: {
         display: true,
         text: 'Cumulative Profit/Loss',
-        color: 'white', // Title color
+        color: 'white',
         font: {
-          size: 20, // Title font size
+          size: 20,
         },
       },
     },
@@ -96,32 +97,32 @@ const PnlGraph: React.FC = () => {
         title: {
           display: true,
           text: 'Date',
-          color: 'white', // X-axis label color
+          color: 'white',
           font: {
-            size: 16, // X-axis label font size
+            size: 16,
           },
         },
         ticks: {
-          color: 'white', // X-axis tick labels color
+          color: 'white',
         },
         grid: {
-          color: '#353535', // X-axis grid lines color
+          color: '#353535',
         },
       },
       y: {
         title: {
           display: true,
           text: 'Cumulative PnL ($)',
-          color: 'white', // Y-axis label color
+          color: 'white',
           font: {
-            size: 16, // Y-axis label font size
+            size: 16,
           },
         },
         ticks: {
-          color: 'white', // Y-axis tick labels color
+          color: 'white',
         },
         grid: {
-          color: '#353535', // Y-axis grid lines color
+          color: '#353535',
         },
       },
     },
@@ -130,10 +131,7 @@ const PnlGraph: React.FC = () => {
   return (
     <div className="graph">
       {chartData ? (
-        <Line
-          data={chartData}
-          options={options}
-        />
+        <Line data={chartData} options={options} />
       ) : (
         <p>Loading graph...</p>
       )}
