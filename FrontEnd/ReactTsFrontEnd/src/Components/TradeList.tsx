@@ -25,14 +25,13 @@ const TradeList: React.FC = () => {
     axios
       .get("http://localhost:8080/api/v1/closedTrades")
       .then((response) => {
-        // Sort trades by tradeDate in descending order
+      
         const sortedTrades = response.data.sort(
           (a: Trade, b: Trade) =>
             new Date(b.tradeExecs[0].tradeDate).getTime() -
             new Date(a.tradeExecs[0].tradeDate).getTime()
         );
 
-        // Slice the sorted trades to get only the latest 20
         const latestTrades = sortedTrades.slice(0, 20);
 
         setTrades(latestTrades);
@@ -42,7 +41,7 @@ const TradeList: React.FC = () => {
       });
   }, []);
 
-  // Function to determine the color based on profitLoss
+
   const getProfitLossColor = (profitLoss: number) => {
     return profitLoss >= 0 ? "#7A9163" : "#AC3231";
   };

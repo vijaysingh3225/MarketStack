@@ -20,7 +20,7 @@ Importing trades will be the core of this application and there are several comp
 <img src="ReadMeImages\Dashboard.png" alt="Dashboard">
 *CURRENT IN-PROGRESS STATE"
 
-The heart of this application is the dashboard. Users should be able to enter their dashboard and be able to easily see the data they want to see to get an accurate view of what their performance has been in whatever period of time. This will be the landing page for a logged in account and this page will focus on various forms of permorance metrics. Things like equity curves, performance graphs and statistics should be easily accessable
+The heart of this application is the dashboard. Users should be able to enter their dashboard and be able to easily see the data they want to see to get an accurate view of what their performance has been in whatever period of time. This will be the landing page for a logged in account and this page will focus on various forms of permorance metrics. Things like equity curves, performance graphs and statistics should be easily accessable.
 
 ### Trade Filtering
 
@@ -29,6 +29,9 @@ One of the main ways a trader improves is by looking at their trades in abstract
 ### Secure Account and Login Systems
 
 This kind of trade data is very sensitive and the architecture must take that into account. There must my a comprehensive registraion, login, and account services system that ensures the privacy and safety of sensative trade information in the database. Users should be able to access all their own data and nobody elses, as well as having the power to wipe any data at any time.
+
+### Additional Tools and Features
+Being a trader for over 5 years I have a deep understanding of the things that can be useful for traders and plan to include various quality of life and other essential tools for optimal trading performance. Things like equity curve generators and position calculators will be available on a section of the site and has lots of potential for expandability into larger features.
 
 ## Technology
 <p style="margin:auto;">
@@ -47,7 +50,7 @@ This kind of trade data is very sensitive and the architecture must take that in
  ## Architecture Details
 
  ### Overview
-The core function app is based upon the flow of data initialized by the user, flowed and sorted into the database structure and then retrieve and manipulated up to the UI. For best understading of the structure you can observe the architecture diagram above and follow the route of data as described.
+The core function app is based upon the flow of data initialized by the user, flowed and sorted into the database structure and then retrieve and manipulated for the UI. For best understading of the structure you can observe the architecture diagram above and follow the route of data as described.
 
 ### Data Flow
 Brokers will offer users their trade history in the form of csv files with data consisting of all trade executions taken in a certain period of time. This data can be inputted on the front end into a react component that will hit the end point /openTrades (Post End Point) which will parse the csv into valid JSON format and post the data. This end point is configured to receive objects called "TradeExec" which are meant to represent a single trade execution.

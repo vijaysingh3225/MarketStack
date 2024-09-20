@@ -42,33 +42,33 @@ const PnlHistogram: React.FC = () => {
     axios
       .get("http://localhost:8080/api/v1/closedTrades")
       .then((response) => {
-        // Prepare data for histogram, limited to the last 60 trades
+     
         const sortedTrades = response.data.sort(
           (a: Trade, b: Trade) =>
             new Date(a.tradeExecs[0].tradeDate).getTime() - new Date(b.tradeExecs[0].tradeDate).getTime()
         );
 
-        // Limit to the last 60 trades
+      
         const last60Trades = sortedTrades.slice(-50);
 
-        // Extract trade dates and values
+      
         const tradeDates: string[] = last60Trades.map((trade: Trade) => new Date(trade.tradeExecs[0].tradeDate).toLocaleDateString());
         const tradeValues: number[] = last60Trades.map((trade: Trade) => trade.profitLoss);
 
-        // Set bar colors based on value
+       
         const barColors: string[] = tradeValues.map(value =>
           value >= 0 ? '#7A9163' : '#AC3231'
         );
 
-        // Set chart data for Chart.js
+       
         setChartData({
           labels: tradeDates,
           datasets: [
             {
               label: 'Trade Profit/Loss',
               data: tradeValues,
-              backgroundColor: barColors, // Dynamic bar colors
-              borderColor: barColors.map(color => color.replace('0.5', '1')), // Adjust border color
+              backgroundColor: barColors, 
+              borderColor: barColors.map(color => color.replace('0.5', '1')), 
               borderWidth: 1,
             },
           ],
@@ -86,15 +86,15 @@ const PnlHistogram: React.FC = () => {
       legend: {
         position: 'top',
         labels: {
-          color: 'white', // Legend text color
+          color: 'white',
         },
       },
       title: {
         display: true,
         text: 'Trade Histogram',
-        color: 'white', // Title color
+        color: 'white', 
         font: {
-          size: 20, // Title font size
+          size: 20, 
         },
       },
     },
@@ -103,34 +103,34 @@ const PnlHistogram: React.FC = () => {
         title: {
           display: true,
           text: 'Trade Date',
-          color: 'white', // X-axis label color
+          color: 'white',
           font: {
-            size: 16, // X-axis label font size
+            size: 16, 
           },
         },
         ticks: {
-          color: 'white', // X-axis tick labels color
-          maxRotation: 90, // Rotate labels for better readability if needed
-          autoSkip: true, // Auto-skip labels to avoid clutter
+          color: 'white', 
+          maxRotation: 90, 
+          autoSkip: true, 
         },
         grid: {
-          color: '#353535', // X-axis grid lines color
+          color: '#353535', 
         },
       },
       y: {
         title: {
           display: true,
           text: 'Profit/Loss ($)',
-          color: 'white', // Y-axis label color
+          color: 'white',
           font: {
-            size: 16, // Y-axis label font size
+            size: 16, 
           },
         },
         ticks: {
-          color: 'white', // Y-axis tick labels color
+          color: 'white', 
         },
         grid: {
-          color: '#353535', // Y-axis grid lines color
+          color: '#353535',
         },
       },
     },
