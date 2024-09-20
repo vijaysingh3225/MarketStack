@@ -4,7 +4,7 @@ import axios from 'axios';
 import "./StyleSheets/PnlHistogram.css";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartOptions } from 'chart.js';
 
-// Register Chart.js components
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,14 +27,14 @@ interface Trade {
 }
 
 interface PnlHistogramProps {
-  tradeCount: number; // Add this prop
+  tradeCount: number; 
 }
 
 const PnlHistogram: React.FC<PnlHistogramProps> = ({ tradeCount }) => {
   const [chartData, setChartData] = useState<any>(null);
 
   useEffect(() => {
-    // Fetch data when component mounts or when tradeCount changes
+   
     axios
       .get("http://localhost:8080/api/v1/closedTrades")
       .then((response) => {
@@ -43,7 +43,7 @@ const PnlHistogram: React.FC<PnlHistogramProps> = ({ tradeCount }) => {
             new Date(a.tradeExecs[0].tradeDate).getTime() - new Date(b.tradeExecs[0].tradeDate).getTime()
         );
 
-        // Slice the number of trades based on the tradeCount prop
+       
         const selectedTrades = sortedTrades.slice(-tradeCount);
 
         const tradeDates: string[] = selectedTrades.map((trade: Trade) =>
@@ -71,7 +71,7 @@ const PnlHistogram: React.FC<PnlHistogramProps> = ({ tradeCount }) => {
       .catch((error) => {
         console.error("There was an error fetching the trades!", error);
       });
-  }, [tradeCount]); // Add tradeCount as a dependency here
+  }, [tradeCount]); 
 
   const options: ChartOptions<'bar'> = {
     responsive: true,

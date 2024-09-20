@@ -1,5 +1,5 @@
 
-# MarketStack
+<img src="ReadMeImages\Title.png" alt="Title" style="margin:auto">
 ### [marketstack.quest](marketstack.quest)
 ### Full Stack Trade Journaling Web Application
 
