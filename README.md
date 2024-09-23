@@ -1,5 +1,13 @@
 <img src="ReadMeImages\Title.png" alt="Title" style="margin: auto;">
-
+<p style="margin:auto;">
+<img src="ReadMeImages\SpringBoot.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\Kotlin.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\TypeScript.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\react.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\mongodb.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\html.png" width="80px" height="80px" style="display: inline;">
+<img src="ReadMeImages\css.png" width="80px" height="80px" style="display: inline; margin-right: 5px;">
+</p>
 ### [marketstack.quest](marketstack.quest)
 ### Full Stack Trade Journaling Web Application
 
@@ -33,16 +41,7 @@ This kind of trade data is very sensitive and the architecture must take that in
 ### Additional Tools and Features
 Being a trader for over 5 years I have a deep understanding of the things that can be useful for traders and plan to include various quality of life and other essential tools for optimal trading performance. Things like equity curve generators and position calculators will be available on a section of the site and has lots of potential for expandability into larger features.
 
-## Technology
-<p style="margin:auto;">
-<img src="ReadMeImages\SpringBoot.png" width="80px" height="80px" style="display: inline;">
-<img src="ReadMeImages\Kotlin.png" width="80px" height="80px" style="display: inline;">
-<img src="ReadMeImages\TypeScript.png" width="80px" height="80px" style="display: inline;">
-<img src="ReadMeImages\react.png" width="80px" height="80px" style="display: inline;">
-<img src="ReadMeImages\mongodb.png" width="80px" height="80px" style="display: inline;">
-<img src="ReadMeImages\html.png" width="80px" height="80px" style="display: inline;">
-<img src="ReadMeImages\css.png" width="80px" height="80px" style="display: inline; margin-right: 5px;">
-</p>
+
 
 ## App Architecture
  <img src="ReadMeImages\MarketStackArchitecture.png">
