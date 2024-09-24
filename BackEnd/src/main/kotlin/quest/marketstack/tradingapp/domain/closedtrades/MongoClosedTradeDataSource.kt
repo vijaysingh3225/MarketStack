@@ -12,7 +12,7 @@ class MongoClosedTradeDataSource
     constructor(
         private val mongoTradeExecRepository: MongoClosedTradeRepository,
     ) : ClosedTradeDataSource {
-        override fun retrieveTrades(): Collection<ClosedTrade> = mongoTradeExecRepository.findAll()
+        override fun retrieveTrades(): List<ClosedTrade> = mongoTradeExecRepository.findAll()
 
         override fun retrieveTrade(id: String): ClosedTrade? = mongoTradeExecRepository.findById(id).orElse(null)
 

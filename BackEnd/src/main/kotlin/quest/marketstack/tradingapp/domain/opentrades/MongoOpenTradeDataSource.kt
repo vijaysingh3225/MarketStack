@@ -14,7 +14,7 @@ class MongoOpenTradeDataSource
     constructor(
         private val mongoOpenTradeRepository: MongoOpenTradeRepository,
     ) : OpenTradeDataSource {
-        override fun retrieveTrades(): Collection<OpenTrade> = mongoOpenTradeRepository.findAll()
+        override fun retrieveTrades(): List<OpenTrade> = mongoOpenTradeRepository.findAll()
 
         override fun retrieveTrade(id: String): OpenTrade? = mongoOpenTradeRepository.findById(id).orElse(null)
 

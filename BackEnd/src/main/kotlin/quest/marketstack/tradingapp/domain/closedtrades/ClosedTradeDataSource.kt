@@ -5,7 +5,7 @@ import quest.marketstack.tradingapp.model.ClosedTrade
 
 @Repository
 interface ClosedTradeDataSource {
-    fun retrieveTrades(): Collection<ClosedTrade>
+    fun retrieveTrades(): List<ClosedTrade>
 
     fun retrieveTrade(id: String): ClosedTrade?
 

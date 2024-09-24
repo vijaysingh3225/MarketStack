@@ -21,33 +21,55 @@ class MongoOpenTradeService(
     override fun addTradeExecs(execList: Collection<TradeExec>): Collection<TradeExec> {
         var openTrades = dataSource.retrieveTrades()
         var isMatch = false
-        for (i in execList) {
+
+        val allExistingTradeExecs: MutableSet<TradeExec> = mutableSetOf()
+
+        openTrades.forEach { openTrade ->
+            allExistingTradeExecs.addAll(openTrade.tradeExecs)
+        }
+        val closedTrades = closedDataSource.retrieveTrades()
+        closedTrades.forEach { closedTrade ->
+            allExistingTradeExecs.addAll(closedTrade.tradeExecs)
+        }
+
+        val nonDuplicateExecs = execList.filter { !allExistingTradeExecs.contains(it) }
+
+        val numberOfDuplicates = execList.size - nonDuplicateExecs.size
+        println("Number of duplicates found: $numberOfDuplicates")
+
+        for (exec in nonDuplicateExecs) {
             openTrades = dataSource.retrieveTrades()
             isMatch = false
-            for (j in openTrades) {
-                val tradeId = j.id
-                if (i.symbol == j.tradeExecs.first().symbol && tradeId != null) {
-                    if ((j.shortLong && (i.side == "SS" || i.side == "BC")) || (!j.shortLong && (i.side == "B" || i.side == "S"))) {
+
+            for (openTrade in openTrades) {
+                val tradeId = openTrade.id
+                if (exec.symbol == openTrade.tradeExecs.firstOrNull()?.symbol && tradeId != null) {
+                    if ((openTrade.shortLong && (exec.side == "SS" || exec.side == "BC")) ||
+                        (!openTrade.shortLong && (exec.side == "B" || exec.side == "S"))
+                    ) {
+                        println("IGNORED")
                         continue
                     }
-                    print("Execution added to existing trade")
-                    dataSource.addExec(i, tradeId)
+                    println("Execution added to existing trade")
+                    dataSource.addExec(exec, tradeId)
                     isMatch = true
+                    break
                 }
             }
+
             if (!isMatch) {
-                print("New Trade Opened")
-                if (i.side == "B") {
-                    dataSource.createTrades(listOf(OpenTrade(tradeExecs = mutableListOf(i), shortLong = true)))
+                println("New Trade Opened")
+                if (exec.side == "B") {
+                    dataSource.createTrades(listOf(OpenTrade(tradeExecs = mutableListOf(exec), shortLong = true)))
                 }
-                if (i.side == "SS") {
-                    dataSource.createTrades(listOf(OpenTrade(tradeExecs = mutableListOf(i), shortLong = false)))
+                if (exec.side == "SS") {
+                    dataSource.createTrades(listOf(OpenTrade(tradeExecs = mutableListOf(exec), shortLong = false)))
                 }
             }
             closeTrades(closedDataSource)
         }
 
-        return execList
+        return nonDuplicateExecs
     }
 
     override fun closeTrades(closedDataSource: ClosedTradeDataSource): Collection<ClosedTrade> {

@@ -37,5 +37,5 @@ class ClosedOpenTradeServiceTest {
             shortLong = true,
         )
 
-    private fun getTestClosedTrades(): Collection<ClosedTrade> = listOf(getTestClosedTrade())
+    private fun getTestClosedTrades(): List<ClosedTrade> = listOf(getTestClosedTrade())
 }

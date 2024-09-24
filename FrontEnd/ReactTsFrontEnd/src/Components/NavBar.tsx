@@ -1,43 +1,49 @@
 import React from 'react';
-import "./StyleSheets/NavBar.css"
+import { NavLink, useLocation } from 'react-router-dom';
+import '../StyleSheets/NavBar.css';
 
 const NavBar: React.FC = () => {
-  return <div className='navbar'>
-    <div className='title'>
-      <img src="src\images\TitleLogo.png" alt="" className='titleLogo'/>
-    </div>
-    <div className='navContainer'>
-        <div className='navItem selected'>
-          <img src="src\images\dashboard-white.png" alt="" className='logo'/>
-          <span>Dashboard</span></div>
-        <div className='navItem'>
-          <img src="src\images\graphLogo-white.png" alt="" className='logo'/>
+  const location = useLocation(); 
+
+  return (
+    <div className='navbar'>
+      <div className='title'>
+        <img src="src/images/TitleLogo.png" alt="" className='titleLogo' />
+      </div>
+      <div className='navContainer'>
+        <NavLink to="/" className={`navItem ${location.pathname === '/' ? 'selected' : ''}`}>
+          <img src="src/images/dashboard-white.png" alt="Dashboard Logo" className='logo' />
+          <span>Dashboard</span>
+        </NavLink>
+        <NavLink to="/graphs" className={`navItem ${location.pathname === '/graphs' ? 'selected' : ''}`}>
+          <img src="src/images/graphLogo-white.png" alt="Graphs Logo" className='logo' />
           <span>Graphs</span>
-        </div>
-        <div className='navItem'>
-          <img src="src\images\statisticLogo.png" alt="" className='logo'/>
+        </NavLink>
+        <NavLink to="/statistics" className={`navItem ${location.pathname === '/statistics' ? 'selected' : ''}`}>
+          <img src="src/images/statisticLogo.png" alt="Statistics Logo" className='logo' />
           <span>Statistics</span>
-        </div>
-        <div className='navItem'>
-          <img src="src\images\calanderIcon.png" alt="" className='logo'/>
+        </NavLink>
+        <NavLink to="/calendar" className={`navItem ${location.pathname === '/calendar' ? 'selected' : ''}`}>
+          <img src="src/images/calanderIcon.png" alt="Calendar Logo" className='logo' />
           <span>Calendar</span>
-        </div>
-        <div className='navItem'>
-          <img src="src\images\toolsIcon.png" alt="" className='logo'/>
+        </NavLink>
+        <NavLink to="/tools" className={`navItem ${location.pathname === '/tools' ? 'selected' : ''}`}>
+          <img src="src/images/toolsIcon.png" alt="Tools Logo" className='logo' />
           <span>Tools</span>
-        </div>
+        </NavLink>
+      </div>
+      <div className='navFooter'>
+      <NavLink to="/import" className={`footerItem ${location.pathname === '/import' ? 'footerItemSelected' : ''}`}>
+          <img src="src/images/importIcon.png" alt="Import Icon" className='logo' />
+          <span>Import</span>
+          </NavLink>
+          <NavLink to="/account" className={`footerItem ${location.pathname === '/account' ? 'footerItemSelected' : ''}`}>
+          <img src="src/images/accountIcon.png" alt="Account Icon" className='logo' />
+          <span>Account</span>
+          </NavLink>
+      </div>
     </div>
-    <div className='navFooter'>
-      <div className='footerItem'>
-        <img src="src\images\importIcon.png" alt="" className='logo'/>
-        <span>Import</span>
-        </div>
-      <div className='footerItem spacer'>
-      <img src="src\images\accountIcon.png" alt="" className='logo'/>
-        <span>Account</span>
-        </div>
-    </div>
-  </div>;
+  );
 };
 
 export default NavBar;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
-import './StyleSheets/PnlGraph.css';
+import '../StyleSheets/PnlGraph.css';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ChartOptions } from 'chart.js';
 
 ChartJS.register(
@@ -27,7 +27,7 @@ interface Trade {
 }
 
 interface PnlGraphProps {
-  tradeCount: number; // Add this prop
+  tradeCount: number; 
 }
 
 const PnlGraph: React.FC<PnlGraphProps> = ({ tradeCount }) => {
@@ -42,7 +42,6 @@ const PnlGraph: React.FC<PnlGraphProps> = ({ tradeCount }) => {
             new Date(a.tradeExecs[0].tradeDate).getTime() - new Date(b.tradeExecs[0].tradeDate).getTime()
         );
 
-        // If tradeCount is 0, show all trades, otherwise show the specified count
         const tradesToShow = tradeCount === 0 ? sortedTrades : sortedTrades.slice(-tradeCount);
 
         let cumulativePnL = 0;

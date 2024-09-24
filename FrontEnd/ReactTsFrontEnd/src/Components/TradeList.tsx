@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./StyleSheets/TradeList.css";
+import "../StyleSheets/TradeList.css";
 
 interface TradeExec {
   symbol: string;

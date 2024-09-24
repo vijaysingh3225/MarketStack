@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, MouseEvent } from "react";
 import Papa from "papaparse";
+import '../StyleSheets/Import.css';
 
 interface CsvData {
     [key: string]: any;
@@ -7,15 +8,15 @@ interface CsvData {
 
 interface TradeExec {
     account: string;
-    tradeDate: string; // ISO format for LocalDate
-    settlementDate: string; // ISO format for LocalDate
+    tradeDate: string;
+    settlementDate: string;
     currency: string;
     type: number;
     side: string;
     symbol: string;
     quantity: number;
     price: number;
-    execTime: string; // ISO format for LocalTime
+    execTime: string;
     commission: number;
     secFee: number;
     taf: number;
@@ -63,7 +64,6 @@ function ImportButton() {
                 complete: (results) => {
                     const parsedData = results.data as CsvData[];
 
-                
                     const transformedData: TradeExec[] = parsedData.map(row => ({
                         account: row["Account"] || "",
                         tradeDate: row["T/D"] ? new Date(row["T/D"]).toISOString().split('T')[0] : "",
@@ -91,7 +91,6 @@ function ImportButton() {
 
                     setJsonData(transformedData);
 
-                
                     fetch("http://localhost:8080/api/v1/openTrades", {
                         method: "POST",
                         headers: {
@@ -99,17 +98,17 @@ function ImportButton() {
                         },
                         body: JSON.stringify(transformedData),
                     })
-                    .then(response => {
-                        if (response.ok) {
-                            alert("Data successfully posted!");
-                        } else {
-                            alert("Failed to post data");
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error posting data:", error);
-                        alert("Error posting data");
-                    });
+                        .then(response => {
+                            if (response.ok) {
+                                alert("Data successfully posted!");
+                            } else {
+                                alert("Failed to post data");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error posting data:", error);
+                            alert("Error posting data");
+                        });
                 },
                 error: (error) => {
                     console.error("Error parsing CSV:", error);
@@ -121,9 +120,10 @@ function ImportButton() {
     };
 
     return (
-        <div>
-            <input type="file" accept=".csv" onChange={handleFileChange} />
-            <button type="button" onClick={handleImport}>Import</button>
+        <div className="file-import-container">
+            <input type="file" accept=".csv" id="file" className="hidden" onChange={handleFileChange} />
+            <label htmlFor="file" className="button">Choose File</label>
+            <button type="button" onClick={handleImport} className="button">Import</button>
         </div>
     );
 }

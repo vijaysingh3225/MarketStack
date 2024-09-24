@@ -1,5 +1,5 @@
 import React from 'react';
-import './StyleSheets/TopBar.css';
+import '../StyleSheets/TopBar.css';
 
 interface TopBarProps {
   onTradeCountChange: (count: number) => void;

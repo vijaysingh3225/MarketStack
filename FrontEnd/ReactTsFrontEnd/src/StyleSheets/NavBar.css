@@ -18,10 +18,12 @@
     min-width: 225px;
     max-width: 225px;
     border-right: 2px solid #EDE0A4;
+
 }
 
 span {
     width: 60%;
+
 }
 
 .title {
@@ -52,6 +54,7 @@ span {
     align-items: center;
     padding-right: 1000px;
     overflow: hidden;
+    text-decoration: none;
 }
 .navItem img, .navItem span {
     margin-right: 10px; 
@@ -68,8 +71,11 @@ span {
     overflow: hidden;
     margin-top: 10px;
     border-radius: 5px;
-    background-color: #494949;
-    border: 2px solid #EDE0A4;
+    text-decoration: none;
+}
+
+.footerItemSelected{
+    background-color: #686868;
 }
 
 .navItem:hover, .footerItem:hover {

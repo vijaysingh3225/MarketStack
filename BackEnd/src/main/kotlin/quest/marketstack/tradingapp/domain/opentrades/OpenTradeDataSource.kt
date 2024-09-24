@@ -6,7 +6,7 @@ import quest.marketstack.tradingapp.model.TradeExec
 
 @Repository
 interface OpenTradeDataSource {
-    fun retrieveTrades(): Collection<OpenTrade>
+    fun retrieveTrades(): List<OpenTrade>
 
     fun retrieveTrade(id: String): OpenTrade?
 

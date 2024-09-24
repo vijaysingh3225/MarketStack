@@ -66,7 +66,7 @@ class MockClosedTradeDataSource : ClosedTradeDataSource {
         )
     val mockTrade = mutableListOf(ClosedTrade(id = "123", tradeExecs = mockExec, shortLong = false))
 
-    override fun retrieveTrades(): Collection<ClosedTrade> = mockTrade
+    override fun retrieveTrades(): List<ClosedTrade> = mockTrade
 
     override fun retrieveTrade(id: String): ClosedTrade? = mockTrade.firstOrNull { it.id == id }
 
