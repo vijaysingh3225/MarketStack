@@ -9,10 +9,10 @@ const HomeNav: React.FC = () => {
         <img src="src/images/TitleLogo.png" alt="" className='titleLogo' />
       </div>
       <div className='nav-buttons'>
-      <NavLink to="/Login" ><div className='nav-item'>Home</div></NavLink>
-        <NavLink to="/Login" ><div className='nav-item'>Features</div></NavLink>
-        <NavLink to="/Login" ><div className='nav-item'>Sign In</div></NavLink>
-        <NavLink to="/Login" ><div className='nav-item'>Register</div></NavLink>
+        <NavLink to="/" className='nav-item'><div>Home</div></NavLink>
+        <NavLink to="/Login" className='nav-item'><div>Features</div></NavLink>
+        <NavLink to="/Login" className='nav-item'><div>Sign In</div></NavLink>
+        <NavLink to="/Login" className='nav-item'><div>Register</div></NavLink>
         
       </div>
     </div>

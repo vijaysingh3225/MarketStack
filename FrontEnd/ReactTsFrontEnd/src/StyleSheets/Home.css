@@ -1,3 +1,35 @@
-body{
-    background:none;
+.dashboard-sample{
+    width: 80%;
+    margin: auto;   
+    margin-top: 100px;
+    border: 2px solid #EDE0A4;
+    border-radius: 7px;
+}
+.header-text{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    font-size: 3rem;
+}
+.start-button{
+    margin: auto;
+    margin-top: 50px;
+    background-color: rgba(43, 43, 43, 1);
+    border: 2px solid #EDE0A4;
+    border-radius: 2px;
+    width: 120px;
+    height: 45px;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.start-button:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.head-container{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+    flex-direction: column;
 }

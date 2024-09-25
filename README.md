@@ -9,7 +9,7 @@
 <img src="ReadMeImages\css.png" width="80px" height="80px" style="display: inline; margin-right: 5px;">
 </p>
 
-### [marketstack.quest](marketstack.quest)
+### [marketstack.quest](marketstack.quest) *NOT YET LIVE*
 ### Full Stack Trade Journaling Web Application
 
 
@@ -24,7 +24,8 @@ These are the core features the application should have in a fully developed ver
 ### Import
 
 Importing trades will be the core of this application and there are several complications to get through. Every broker send out a user's trade history in differently formated csv files so the application has to be capable of parsing majority of popular broker's format into a single json format to be received by the endpoint
-
+### Home Page
+<img src="ReadMeImages\HomePage.png" alt="Dashboard">
 ### Dashboard
 <img src="ReadMeImages\Dashboard.png" alt="Dashboard">
 *CURRENT IN-PROGRESS STATE"

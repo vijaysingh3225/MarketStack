@@ -7,7 +7,8 @@ import Import from './Pages/Import';
 import Statistics from './Pages/Statistics';
 import Tools from './Pages/Tools';
 import Home from './Pages/Home';
-import Login from './Pages/Graphs';
+import Login from './Pages/Login';
+
 
 const App: React.FC = () => {
 

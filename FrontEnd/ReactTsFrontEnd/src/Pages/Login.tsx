@@ -1,14 +1,16 @@
 import React from 'react';
 import '../StyleSheets/Login.css';
 import LoginForm from '../Components/LoginForm';
+import HomeNav from '../Components/HomeNav';
 
 const Import: React.FC = () => {
 
 
   return (
-    <div className='login-form-container'>
-        <LoginForm />
-    </div>  
+    <div>
+        <HomeNav/>
+        <LoginForm/>
+    </div>
   );
 };
 
