@@ -6,19 +6,23 @@ import Calendar from './Pages/Calendar';
 import Import from './Pages/Import';
 import Statistics from './Pages/Statistics';
 import Tools from './Pages/Tools';
+import Home from './Pages/Home';
+import Login from './Pages/Graphs';
 
 const App: React.FC = () => {
 
   return (
     <div>
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/Account" element={<Account />} />
       <Route path="/Calendar" element={<Calendar />} />
       <Route path="/Graphs" element={<Calendar />} />
       <Route path="/Import" element={<Import />} />
       <Route path="/Statistics" element={<Statistics />} />
       <Route path="/Tools" element={<Tools />} />
+      <Route path="/Login" element={<Login />} />
     </Routes>
   </div>
   );
