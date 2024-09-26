@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import NavBar from '../Components/NavBar';
 import TradeList from '../Components/TradeList';
 import PnlGraph from '../Components/PnlGraph';
