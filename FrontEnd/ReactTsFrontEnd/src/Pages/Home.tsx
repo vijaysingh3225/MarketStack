@@ -13,7 +13,7 @@ const Home: React.FC = () => {
           <NavLink to="/Login" style={{ margin: 'auto' }}>
             <button className='start-button'>Start Now</button>
           </NavLink>
-          <img src="src\images\DashBoard.png" alt="" className='dashboard-sample'/>
+          <img src=".\public\images\DashBoard.png" alt="" className='dashboard-sample'/>
         </div>
     </div>
   );
