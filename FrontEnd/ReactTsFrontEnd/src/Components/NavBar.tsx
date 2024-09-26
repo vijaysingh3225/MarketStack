@@ -11,7 +11,7 @@ const NavBar: React.FC = () => {
         <img src="/images/TitleLogo.png" alt="" className='titleLogo' />
       </div>
       <div className='navContainer'>
-        <NavLink to="/Dashboard" className={`navItem ${location.pathname === '/Dashboard' ? 'selected' : ''}`}>
+        <NavLink to="/dashboard" className={`navItem ${location.pathname === '/dashboard' ? 'selected' : ''}`}>
           <img src="/images/dashboard-white.png" alt="Dashboard Logo" className='logo' />
           <span>Dashboard</span>
         </NavLink>

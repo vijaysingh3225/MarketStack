@@ -70,7 +70,7 @@ const PnlGraph: React.FC<PnlGraphProps> = ({ tradeCount }) => {
       .catch((error) => {
         console.error("There was an error fetching the trades!", error);
       });
-  }, [tradeCount]); // Re-run the effect when tradeCount changes
+  }, [tradeCount]); 
 
   const options: ChartOptions<'line'> = {
     responsive: true,

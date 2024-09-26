@@ -16,14 +16,14 @@ const App: React.FC = () => {
     <div>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/Dashboard" element={<Dashboard />} />
-      <Route path="/Account" element={<Account />} />
-      <Route path="/Calendar" element={<Calendar />} />
-      <Route path="/Graphs" element={<Calendar />} />
-      <Route path="/Import" element={<Import />} />
-      <Route path="/Statistics" element={<Statistics />} />
-      <Route path="/Tools" element={<Tools />} />
-      <Route path="/Login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/account" element={<Account />} />
+      <Route path="/calendar" element={<Calendar />} />
+      <Route path="/graphs" element={<Calendar />} />
+      <Route path="/import" element={<Import />} />
+      <Route path="/statistics" element={<Statistics />} />
+      <Route path="/tools" element={<Tools />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </div>
   );
