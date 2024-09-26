@@ -6,7 +6,7 @@ const HomeNav: React.FC = () => {
   return (
     <div className='nav'>
         <div className='title'>
-        <img src="public/images/TitleLogo.png" alt="" className='titleLogo' />
+        <img src="/images/TitleLogo.png" alt="" className='titleLogo' />
       </div>
       <div className='nav-buttons'>
         <NavLink to="/" className='nav-item'><div>Home</div></NavLink>
