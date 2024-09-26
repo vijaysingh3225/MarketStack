@@ -24,6 +24,7 @@ const LoginForm = () => {
         <div className='form'>
         <form onSubmit={handleSubmit}>
             <div className='form-container'>
+                <span className='sign-in-text'>Sign In</span>
             <input
                 type="text"
                 placeholder="Username"
@@ -39,8 +40,13 @@ const LoginForm = () => {
                 className='field'
             />
             <button type="submit" className='login-button'>Login</button>
-            {error && <p>{error}</p>}
+            <div className='error'>
+            {error && <p className='error-text'>{error}</p>}
             </div>
+            <div className='register'><a href="">Create an Account</a></div>
+            <div className='forgot'><a href="">Forgot My Password</a></div>
+            </div>
+
         </form>
         </div>
     );

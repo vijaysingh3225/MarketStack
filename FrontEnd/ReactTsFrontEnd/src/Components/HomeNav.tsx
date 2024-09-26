@@ -1,6 +1,6 @@
 import React from 'react';
 import '../StyleSheets/HomeNav.css';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 
 const HomeNav: React.FC = () => {
   return (
