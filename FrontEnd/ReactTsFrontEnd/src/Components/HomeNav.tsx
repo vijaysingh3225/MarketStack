@@ -10,9 +10,9 @@ const HomeNav: React.FC = () => {
       </div>
       <div className='nav-buttons'>
         <NavLink to="/" className='nav-item'><div>Home</div></NavLink>
-        <NavLink to="/Login" className='nav-item'><div>Features</div></NavLink>
-        <NavLink to="/Login" className='nav-item'><div>Sign In</div></NavLink>
-        <NavLink to="/Dashboard" className='nav-item'><div>Register</div></NavLink>
+        <NavLink to="/login" className='nav-item'><div>Features</div></NavLink>
+        <NavLink to="/login" className='nav-item'><div>Sign In</div></NavLink>
+        <NavLink to="/dashboard" className='nav-item'><div>Register</div></NavLink>
         
       </div>
     </div>
