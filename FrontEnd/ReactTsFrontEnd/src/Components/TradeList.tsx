@@ -23,7 +23,7 @@ const TradeList: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/closedTrades")
+      .get("http://44.204.163.10:8080/api/v1/closedTrades")
       .then((response) => {
       
         const sortedTrades = response.data.sort(
