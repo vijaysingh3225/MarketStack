@@ -7,12 +7,14 @@ spring:
   profiles:
     active: default
 
+server:
+  port: 8080
   ssl:
+    enabled: true
     key-store: classpath:keystore.p12
     key-store-password: Peanuts9
     key-store-type: PKCS12
     key-alias: myapp
-
 api:
   closed-trade:
     base-url: /api/v1/closedTrades
