@@ -8,7 +8,7 @@ import quest.marketstack.tradingapp.service.closedtrades.ClosedTradeServiceInter
 
 @RestController
 @RequestMapping("\${api.closed-trade.base-url}")
-@CrossOrigin(origins = ["http://localhost:5173", "http://192.168.86.244:3000"])
+@CrossOrigin(origins = ["*"])
 class ClosedTradeController(
     private val service: ClosedTradeServiceInterface,
 ) {
