@@ -3,7 +3,7 @@ spring:
     name: TradingApp
   data:
     mongodb:
-      uri: mongodb://localhost:27017/MarketStack
+      uri: mongodb+srv://vijaysingh3225:koMTTJy40P6fFZwS@marketstackdb.hb8bt.mongodb.net/MarketStack?retryWrites=true&w=majority
   profiles:
     active: default
 
