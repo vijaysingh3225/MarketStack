@@ -10,7 +10,6 @@ import quest.marketstack.tradingapp.service.opentrades.OpenTradeServiceInterface
 
 @RestController
 @RequestMapping("\${api.open-trade.base-url}")
-@CrossOrigin(origins = ["*"])
 class OpenTradeController(
     private val service: OpenTradeServiceInterface,
 ) {
