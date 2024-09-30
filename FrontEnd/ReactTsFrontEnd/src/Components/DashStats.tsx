@@ -20,7 +20,6 @@ const DashStats: React.FC<DashStatsProps> = ({ tradeCount }) => {
         const response = await axios.get("https://44.204.163.10:8080/api/v1/closedTrades");
         const trades = response.data;
 
-        // Sort trades by date to ensure chronological order
         const sortedTrades = trades.sort(
           (a: any, b: any) =>
             new Date(a.tradeExecs[0].tradeDate).getTime() - new Date(b.tradeExecs[0].tradeDate).getTime()
