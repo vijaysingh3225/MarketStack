@@ -35,7 +35,7 @@ const PnlGraph: React.FC<PnlGraphProps> = ({ tradeCount }) => {
 
   useEffect(() => {
     axios
-      .get("https://44.204.163.10:8080/api/v1/closedTrades")
+      .get("https://api.marketstack.quest/api/v1/closedTrades")
       .then((response) => {
         const sortedTrades = response.data.sort(
           (a: Trade, b: Trade) =>
