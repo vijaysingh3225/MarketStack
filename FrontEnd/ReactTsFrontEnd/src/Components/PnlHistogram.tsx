@@ -36,7 +36,7 @@ const PnlHistogram: React.FC<PnlHistogramProps> = ({ tradeCount }) => {
   useEffect(() => {
    
     axios
-      .get("http://44.204.163.10:8080/api/v1/closedTrades")
+      .get("https://44.204.163.10:8080/api/v1/closedTrades")
       .then((response) => {
         const sortedTrades = response.data.sort(
           (a: Trade, b: Trade) =>
