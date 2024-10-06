@@ -36,7 +36,7 @@ const PnlHistogram: React.FC<PnlHistogramProps> = ({ tradeCount }) => {
   useEffect(() => {
    
     axios
-      .get("https://api.marketstack.quest/api/v1/closedTrades")
+      .get("https://api.marketstack.quest:8080/api/v1/closedTrades")
       .then((response) => {
         const sortedTrades = response.data.sort(
           (a: Trade, b: Trade) =>
