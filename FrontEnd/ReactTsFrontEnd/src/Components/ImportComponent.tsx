@@ -31,8 +31,6 @@ interface TradeExec {
     note: string;
 }
 
-
-
 function ImportButton() {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [jsonData, setJsonData] = useState<TradeExec[]>([]);
@@ -105,7 +103,7 @@ function ImportButton() {
                             alert("Error posting data");
                         });
                 },
-                error: (error) => {
+                error: (error: unknown) => { // Use unknown type for error
                     console.error("Error parsing CSV:", error);
                 },
             });
@@ -119,6 +117,19 @@ function ImportButton() {
             <input type="file" accept=".csv" id="file" className="hidden" onChange={handleFileChange} />
             <label htmlFor="file" className="button">Choose File</label>
             <button type="button" onClick={handleImport} className="button">Import</button>
+    
+            {jsonData.length > 0 && (
+                <div>
+                    <h3>Imported Data:</h3>
+                    <ul>
+                        {jsonData.map((trade, index) => (
+                            <li key={index}>
+                                {trade.symbol} - {trade.tradeDate} - {trade.quantity} shares at ${trade.price}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 }
