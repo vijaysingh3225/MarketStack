@@ -17,7 +17,7 @@ const DashStats: React.FC<DashStatsProps> = ({ tradeCount }) => {
   useEffect(() => {
     const fetchTrades = async () => {
       try {
-        const response = await axios.get("https://localhost:8080/api/v1/closedTrades");
+        const response = await axios.get("https://backend.marketstack.quest/api/v1/closedTrades");
         const trades = response.data;
 
         const sortedTrades = trades.sort(
