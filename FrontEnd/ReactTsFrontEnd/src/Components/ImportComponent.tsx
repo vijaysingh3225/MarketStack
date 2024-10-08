@@ -84,7 +84,7 @@ function ImportButton() {
 
                     setJsonData(transformedData);
 
-                    fetch("https://backend.marketstack.quest/api/v1/openTrades", {
+                    fetch("https://localhost:8080/api/v1/openTrades", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -128,6 +128,9 @@ function ImportButton() {
                             </li>
                         ))}
                     </ul>
+    
+                    <h3>Raw Data:</h3>
+                    <pre>{JSON.stringify(jsonData, null, 2)}</pre> {/* This prints the raw JSON data in a formatted way */}
                 </div>
             )}
         </div>

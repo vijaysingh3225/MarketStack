@@ -8,7 +8,9 @@ const NavBar: React.FC = () => {
   return (
     <div className='navbar'>
       <div className='nav-title'>
+          <NavLink to="/">
         <img src="/images/TitleLogo.png" alt="" className='titleLogo' />
+        </NavLink>
       </div>
       <div className='navContainer'>
         <NavLink to="/dashboard" className={`navItem ${location.pathname === '/dashboard' ? 'selected' : ''}`}>
