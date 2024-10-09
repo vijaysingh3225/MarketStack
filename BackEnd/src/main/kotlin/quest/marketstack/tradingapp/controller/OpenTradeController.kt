@@ -9,7 +9,7 @@ import quest.marketstack.tradingapp.model.TradeExec
 import quest.marketstack.tradingapp.service.opentrades.OpenTradeServiceInterface
 
 @RestController
-@CrossOrigin(origins = ["https://marketstack.quest", "http://localhost:5173/"])
+@CrossOrigin(origins = ["https://marketstack.quest", "http://localhost:5173/"], methods = [RequestMethod.GET, RequestMethod.POST])
 @RequestMapping("\${api.open-trade.base-url}")
 class OpenTradeController(
     private val service: OpenTradeServiceInterface,
@@ -22,7 +22,9 @@ class OpenTradeController(
         @PathVariable id: String,
     ) = service.getTrade(id)
 
+    // Explicitly allow POST requests only from "https://marketstack.quest"
     @PostMapping
+    @CrossOrigin(origins = ["https://marketstack.quest"], methods = [RequestMethod.POST])
     @ResponseStatus(HttpStatus.CREATED)
     fun addTradeExec(
         @RequestBody execList: Collection<TradeExec>,
