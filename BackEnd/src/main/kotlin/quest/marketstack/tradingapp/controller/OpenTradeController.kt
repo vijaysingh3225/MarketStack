@@ -9,7 +9,6 @@ import quest.marketstack.tradingapp.model.TradeExec
 import quest.marketstack.tradingapp.service.opentrades.OpenTradeServiceInterface
 
 @RestController
-@CrossOrigin(origins = ["https://marketstack.quest", "http://localhost:5173/"])
 @RequestMapping("\${api.open-trade.base-url}")
 class OpenTradeController(
     private val service: OpenTradeServiceInterface,

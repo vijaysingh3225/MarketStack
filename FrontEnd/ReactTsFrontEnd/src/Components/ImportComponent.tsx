@@ -84,7 +84,7 @@ function ImportButton() {
 
                     setJsonData(transformedData);
 
-                    fetch("https://localhost:8080/api/v1/openTrades", {
+                    fetch("https://backend.marketstack.quest/api/v1/openTrades", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",

@@ -1,0 +1,42 @@
+.card-container{
+    height: 700px;
+    width: 80%;
+    margin: 350px auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.card{
+    height: 90%;
+    width: 28%;
+    background-color: #181818;
+    border: 1px solid #EDE0A4;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-title{
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    font-size: 2.7rem;
+    height: 50px;
+}
+
+.card-icon{
+    height: 80px;
+    width: 100px;
+    margin: auto;
+}
+
+.card-body{
+    height: 300px;
+    width: 80%;
+    margin: auto;
+    background-color: grey;
+}
