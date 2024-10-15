@@ -99,7 +99,7 @@ const DashStats: React.FC<DashStatsProps> = ({ tradeCount }) => {
         <div className="stats performance-item">
           <div className="row-container">
           <span className="item">Average Win</span>
-          <span className="item">---</span>
+          <span className="item">Average Loss</span>
           </div>
         </div>
       </div>
