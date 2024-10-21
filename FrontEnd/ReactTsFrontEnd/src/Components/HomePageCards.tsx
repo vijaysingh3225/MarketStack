@@ -6,7 +6,7 @@ const HomePageCards: React.FC = () => {
   return (
     <div className='card-container fade-in'>
         <div className='card'>
-          <img src="/images/importIcon.png" alt="Import Icon" className='card-icon' />
+          <img src="/images/importIconCard.png" alt="Import Icon" className='card-icon' />
             <span className='card-title'>Import</span>
             <p className='card-body'>Import trade data provided by your broker of choice, have the data sorted and displayed on your dashboard</p>
         </div>

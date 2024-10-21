@@ -5,6 +5,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    color:#EDE0A4;
 
 }
 
@@ -13,7 +14,7 @@
     width: 28%;
     background-color: #181818;
     border: 1px solid #EDE0A4;
-    border-radius: 5px;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -26,17 +27,20 @@
     text-align: center;
     font-size: 2.7rem;
     height: 50px;
+    color:#a3a3a3;
+    font-weight: 700;
 }
 
 .card-icon{
     height: 80px;
     width: 100px;
-    margin: auto;
+    margin: 20% auto auto auto;
+    color:#EDE0A4;
 }
 
 .card-body{
     height: 300px;
     width: 80%;
     margin: auto;
-    background-color: grey;
+    font-size: 1.8rem;
 }
