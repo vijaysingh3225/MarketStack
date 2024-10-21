@@ -26,7 +26,7 @@
     margin: auto;
     width: 100%;
     text-align: center;
-    font-size: 2.7rem;
+    font-size: 2.8rem;
     height: 50px;
     color:#a3a3a3;
     font-weight: 700;
@@ -37,6 +37,14 @@
     width: 100px;
     margin: 20% auto auto auto;
     color:#EDE0A4;
+}
+
+.card-icon-import{
+    height: 80px;
+    width: 100px;
+    margin: 20% auto auto auto;
+    color:#EDE0A4;
+    margin-bottom: 20px;
 }
 
 .card-body{
