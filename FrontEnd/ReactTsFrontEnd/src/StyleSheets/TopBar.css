@@ -23,3 +23,13 @@
     transition: transform 0.3s ease, background-color 0.3s ease;
 
   }
+
+  .custom-input{
+    margin-left: 20px;
+    background-color: #555555;
+    border: 1px solid #EDE0A4;
+    border-radius: 5px;
+    width: 150px;
+    height: 37px;
+    font-size: 1.2rem;
+  }
