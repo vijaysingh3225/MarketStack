@@ -32,7 +32,7 @@ const TradeList: React.FC = () => {
             new Date(a.tradeExecs[0].tradeDate).getTime()
         );
 
-        const latestTrades = sortedTrades.slice(0, 20);
+        const latestTrades = sortedTrades.slice(0, 100);
 
         setTrades(latestTrades);
       })
