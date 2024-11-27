@@ -41,9 +41,9 @@ const PnlGraph: React.FC<PnlGraphProps> = ({ tradeCount }) => {
           (a: Trade, b: Trade) =>
             new Date(a.tradeExecs[0].tradeDate).getTime() - new Date(b.tradeExecs[0].tradeDate).getTime()
         );
-
+  
         const tradesToShow = tradeCount === 0 ? sortedTrades : sortedTrades.slice(-tradeCount);
-
+  
         let cumulativePnL = 0;
         const cumulativeData = tradesToShow.map((trade: Trade) => {
           cumulativePnL += trade.profitLoss;
@@ -52,13 +52,19 @@ const PnlGraph: React.FC<PnlGraphProps> = ({ tradeCount }) => {
             cumulativePnL: cumulativePnL,
           };
         });
-
+  
+        // Add an initial point for 0 cumulative PnL
+        const dataWithInitialPoint = [
+          { tradeDate: tradesToShow[0]?.tradeExecs[0]?.tradeDate || new Date().toISOString(), cumulativePnL: 0 },
+          ...cumulativeData,
+        ];
+  
         setChartData({
-          labels: cumulativeData.map((data: any) => new Date(data.tradeDate).toLocaleDateString()),
+          labels: dataWithInitialPoint.map((data: any) => new Date(data.tradeDate).toLocaleDateString()),
           datasets: [
             {
               label: 'Cumulative Profit/Loss',
-              data: cumulativeData.map((data: any) => data.cumulativePnL),
+              data: dataWithInitialPoint.map((data: any) => data.cumulativePnL),
               borderColor: '#7A9163',
               backgroundColor: 'rgb(122, 145, 99, 0.4)',
               fill: true,
@@ -70,7 +76,7 @@ const PnlGraph: React.FC<PnlGraphProps> = ({ tradeCount }) => {
       .catch((error) => {
         console.error("There was an error fetching the trades!", error);
       });
-  }, [tradeCount]); 
+  }, [tradeCount]);
 
   const options: ChartOptions<'line'> = {
     responsive: true,
